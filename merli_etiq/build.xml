@@ -70,12 +70,13 @@
            optimize="${optimize}" 
 	 	   encoding="${ant.build.javac.encoding}"
  		   source="${ant.build.javac.source}"
-           target="${ant.build.javac.target}">
+           target="${ant.build.javac.target}"
+           includeantruntime="false">
       <src path="${src.dir}"/>
       <classpath>
-        <pathelement location="/WEB-INF/lib/servlet.jar"/>
-        <pathelement location="/WEB-INF/lib/junit.jar"/>
-        <pathelement location="/WEB-INF/lib/jsp-api.jar"/>
+        <pathelement location="${lib.dir}/servlet.jar"/>
+        <pathelement location="${lib.dir}/junit.jar"/>
+        <pathelement location="${lib.dir}/jsp-api.jar"/>
         <pathelement location="${lib.dir}/activation.jar"/>
         <pathelement location="${lib.dir}/apiSemanticNetv3.1.jar"/>
         <pathelement location="${lib.dir}/merliUtils.jar"/>
