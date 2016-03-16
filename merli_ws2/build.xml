@@ -74,9 +74,9 @@
     	   target="${ant.build.javac.target}">
       <src path="${src.dir}"/>
       <classpath>
-        <pathelement location="${lib.dir}/libTomcat/servlet.jar"/>
-        <pathelement location="${lib.dir}/libTomcat/junit.jar"/>
-        <pathelement location="${lib.dir}/libTomcat/jsp-api.jar"/>
+        <pathelement location="/WEB-INF/lib/servlet.jar"/>
+        <pathelement location="/WEB-INF/lib/junit.jar"/>
+        <pathelement location="/WEB-INF/lib/jsp-api.jar"/>
       	<pathelement location="${lib.dir}/activation.jar"/>
       	<pathelement location="${lib.dir}/apiSemanticMerli.jar"/>
       	<pathelement location="${lib.dir}/apiSemanticNetv3.1.jar"/>

@@ -71,7 +71,7 @@
     	   target="${ant.build.javac.target}">
       <src path="${src.dir}"/>
       <classpath>
-		<pathelement location="${lib.dir}/libTomcat/servlet.jar"/>
+		<pathelement location="/WEB-INF/lib/servlet.jar"/>
         <pathelement location="${lib.dir}/activation.jar"/>
         <pathelement location="${lib.dir}/dbconn.jar"/>
         <pathelement location="${lib.dir}/jdom.jar"/>
