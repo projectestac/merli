@@ -2,3 +2,5 @@ Release notes for Merli
 
 More information on each of the fixes can be found in the project
 development home at https://github.com/projectestac/merli
+
+V2.0.7
