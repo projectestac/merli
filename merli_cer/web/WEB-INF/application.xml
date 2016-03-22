@@ -8,7 +8,7 @@
   <module>
     <web>
       <web-uri>merli_cer.war</web-uri>
-      <context-root>/merli_cere</context-root>
+      <context-root>/merli</context-root>
     </web>
   </module>
 
