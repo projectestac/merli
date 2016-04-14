@@ -523,7 +523,8 @@ public class ServletCerca extends HttpServlet {
             
             usuari = (String) session.getAttribute("nomUsuari");
             if (usuari == null) {
-                usuari = (String) request.getRemoteUser();
+                // Amendez 23-03-2016 https://trello.com/c/KGRG9QBR
+                usuari= (String) session.getAttribute("user");
             }
             
             userGeneric = (String) session.getAttribute("userGeneric");

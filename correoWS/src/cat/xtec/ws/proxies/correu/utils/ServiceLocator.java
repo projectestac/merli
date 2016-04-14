@@ -5,11 +5,11 @@ import java.util.ResourceBundle;
 public class ServiceLocator {
 
     public static final String ENTORN_INT = "int";
-    public static final String ENTORN_ACC = "acc";    
-    public static final String ENTORN_PROD = "prod";
+
+    public static final String ENTORN_PROD = "pro";
     private static final String BASE_PROP = "cat.xtec.ws.correu.url.";
     private static final String PROP_INT = "cat.xtec.ws.correu.url.int";
-    private static final String PROP_ACC = "cat.xtec.ws.correu.url.acc";    
+
     private static final String PROP_PRO = "cat.xtec.ws.correu.url.pro";
     
     /* XTEC - NADIM - 30-09-2015*/

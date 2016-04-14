@@ -260,6 +260,7 @@
                        class="linial"><%=XMLCollection.getProperty("cerca.educacio.batxillerat", sLang)%>
                     </a></li>
                 <li>
+                    <!-- Amendez 22/03/2016 https://trello.com/c/hve2s1ni-->
                     <a href="directoriInicialArea.jsp?idLevel=9698"
                        class="linial"><%=XMLCollection.getProperty("cerca.educacio.fpmitja", sLang)%>
                     </a></li>

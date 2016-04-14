@@ -112,7 +112,7 @@
 
 
     <target name="dist" depends="init">
-        <war destfile="${dist.dir}/e13_merli_duc.war"
+        <war destfile="${dist.dir}/merli_duc.war"
              webxml="${web.dir}/WEB-INF/web.xml">
 
             <manifest>
@@ -156,16 +156,16 @@
 
     <target name="deploy"
             depends="dist">
-        <ear destfile="${dist.dir}/e13_merli_duc.ear"
+        <ear destfile="${dist.dir}/merli_duc.ear"
              appxml="${web.dir}/WEB-INF/application.xml">
             <manifest>
                 <attribute name="Built-By"
                            value="${user.name}"/>
             </manifest>
-            <fileset dir="${dist.dir}" includes="e13_merli_duc.war"/>
+            <fileset dir="${dist.dir}" includes="merli_duc.war"/>
         </ear>
         <delete dir="${build.dir}"/>
-        <delete file="${dist.dir}/e13_merli_duc.war"/>
+        <delete file="${dist.dir}/merli_duc.war"/>
     </target>
 
     <!-- =================================================================== -->
@@ -176,12 +176,29 @@
         <mkdir dir="${build.dir}/utils"/>
 
         <copy todir="${build.dir}/utils">
-            <fileset dir="${build.dir}/WEB-INF/classes" includes="edu/xtec/merli/**/*.class"/>
+            <fileset dir="${build.dir}/WEB-INF/classes" includes="edu/xtec/merli/**/*.class" excludes="edu/xtec/merli/semanticnet/**" />
         </copy>
-        <copy todir="${build.dir}/utils">
-            <fileset dir="${src.dir}" includes="**/database.properties,**/log4j.properties"/>
+    <!-- <copy todir="${build.dir}/utils">
+         <fileset dir="${src.dir}" includes="**/database.properties,**/log4j.properties"/>
+     </copy>-->
+     <jar jarfile="${dist.dir}/merliUtils.jar" basedir="${build.dir}/utils" />
+ </target>
+
+
+
+ <!-- =================================================================== -->
+    <!-- APISEMANTICMERLI.jar                                                     -->
+    <!-- =================================================================== -->
+    <target name="apiSemanticMerli" depends="compile">
+        <delete dir="${build.dir}/semanticnet"/>
+        <mkdir dir="${build.dir}/semanticnet"/>
+
+        <copy todir="${build.dir}/semanticnet">
+            <fileset dir="${build.dir}/WEB-INF/classes" includes="edu/xtec/merli/semanticnet/**/*.class"/>
         </copy>
-        <jar jarfile="${dist.dir}/merliUtils.jar" basedir="${build.dir}/utils" />
+
+        <jar jarfile="${dist.dir}/apiSemanticMerli.jar" basedir="${build.dir}/semanticnet" />
     </target>
+
 </project>
 

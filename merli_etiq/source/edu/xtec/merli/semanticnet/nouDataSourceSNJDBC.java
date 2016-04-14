@@ -1,16 +1,6 @@
 package edu.xtec.merli.semanticnet;
 
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-
 import edu.xtec.merli.basedades.AccesBD;
 import edu.xtec.merli.basedades.MerliDBException;
 import edu.xtec.merli.utils.Utility;
@@ -19,8 +9,12 @@ import edu.xtec.semanticnet.RelationType;
 import edu.xtec.semanticnet.SemanticException;
 import edu.xtec.util.db.ConnectionBean;
 import edu.xtec.util.db.ConnectionBeanProvider;
+import org.apache.log4j.Logger;
 
-public class DataSourceSNJDBC  implements DataSource{
+import java.sql.SQLException;
+import java.util.*;
+
+public class nouDataSourceSNJDBC implements DataSource{
 
 	private static final Logger logger = Logger.getRootLogger();//("xtec.duc");
 	
@@ -294,7 +288,63 @@ public class DataSourceSNJDBC  implements DataSource{
 
 			return lRes;
 		}
+		/*
+		public List getRelations(int idNode, String nodeType , String type, int direction) throws SemanticException {
+			String condi, sType = "", dType = "", sIdNode = "id_node",  idNodeDest = "";
+			String table = null;
+			List l = new ArrayList();
+			List lRes = new ArrayList();
+			
+			Hashtable hConf = configRelationQuery(idNode, nodeType, type, direction);
+			table = (String) hConf.get("table");
+			condi = (String) hConf.get("condition");
+			l = (List) hConf.get("elements");
+			sType = (String) hConf.get("sourceType");
+			dType = (String) hConf.get("destType");
+			
+			try {
+				ConnectionBean cb= this.connectBD();
+				Map m = AccesBD.getObjectList(table,l,"("+condi+")","", cb.getConnection());
+				this.disconnectBD(cb);
+				List l1, l2, l3 = null;
+				l1 = (List) m.get(l.get(0));
+				l2 = (List) m.get(l.get(1));
+				if (l.size() > 2) l3 = (List) m.get(l.get(2));
+				for (int i=0;i< l1.size();i++){
+					/*
+					 * En cas que algun dels camps sigui 'null' es creu que la relació no existeix.
+					 * /
+					try{
+						Hashtable dto = new Hashtable();
+						dto.put("idSource",new Integer(Utility.toParaula(l1.get(i).toString())));
+						dto.put("sourceType",sType);
+						if (l3 != null){
+							dto.put("destType",Utility.toParaula(l3.get(i).toString()));
+							if (sType.compareTo("thesaurus")==0){
+								dto.put("sourceType",Utility.toParaula(l3.get(i).toString()));
+								dto.put("destType",sType);
+							}
+						}
+						else dto.put("destType",dType);
+						dto.put("idDest",new Integer(Utility.toParaula(l2.get(i).toString())));
+						dto.put("relationType",type);
+						lRes.add(dto);
+					}catch(NullPointerException npe){
+						logger.warn("Error creating relation:"+npe.getMessage());
+					}
+				}
+				
+			} catch (SQLException e) {
+				logger.warn("Error loading relations of:"+idNode+nodeType+":"+e.getMessage());
+			}
 
+			return lRes;
+		}*/
+		
+		
+		/**
+		 * 
+		 */
 		public List getRelations(int idNode,String nodeType , List types, int direction) throws SemanticException {
 			// TODO Auto-generated method stub
 			String condi;
@@ -341,11 +391,8 @@ public class DataSourceSNJDBC  implements DataSource{
 			//String folderProp = "../../../../";
 			String folderProp = "/";
 			String pathProp = "database.properties";
-			logger.error("1");
-			logger.error("folderprop y pathprop" + folderProp + pathProp);
 			if (hProperties.containsKey("properties")){
-                            
-				propDoc = (Hashtable) hProperties.get("properties");                                
+				propDoc = (Hashtable) hProperties.get("properties");
 				if (propDoc.containsKey("propertiesDocument.folder")){
 					folderProp = (String) propDoc.get("propertiesDocument.folder");
 				}
@@ -357,7 +404,6 @@ public class DataSourceSNJDBC  implements DataSource{
 				if (broker == null){
 					broker = ConnectionBeanProvider.getConnectionBeanProvider(true, Utility.loadProperties(folderProp,pathProp));		
 				}
-                                logger.error(broker);
 				bd = broker.getConnectionBean();
 			}catch(Exception e)
 				{
@@ -466,6 +512,21 @@ public class DataSourceSNJDBC  implements DataSource{
 					if (((Hashtable) dto.get("properties")).containsKey("relatedContent")) qery+=((Hashtable) dto.get("properties")).get("relatedContent")+", ";
 					else qery +=0+", ";
 				}
+				if (((String) l.get(i)).compareTo("v_term_es") == 0){
+					if (!insert) qery += " v_term_es=";
+					if (((Hashtable) dto.get("properties")).containsKey("v_term_es")) qery+="'"+((Hashtable) dto.get("properties")).get("v_term_es")+"', ";
+					else qery +="'', ";
+				}
+				if (((String) l.get(i)).compareTo("v_term_en") == 0){
+					if (!insert) qery += " v_term_en=";
+					if (((Hashtable) dto.get("properties")).containsKey("v_term_en")) qery+="'"+((Hashtable) dto.get("properties")).get("v_term_en")+"', ";
+					else qery +="'', ";
+				}
+				if (((String) l.get(i)).compareTo("v_term_oc") == 0){
+					if (!insert) qery += " v_term_oc=";
+					if (((Hashtable) dto.get("properties")).containsKey("v_term_oc")) qery+="'"+((Hashtable) dto.get("properties")).get("v_term_oc")+"', ";
+					else qery +="'', ";
+				}
 				if (i == l.size()-1){
 					qery = (String) qery.subSequence(0, qery.lastIndexOf(", "));
 				}
@@ -494,6 +555,7 @@ public class DataSourceSNJDBC  implements DataSource{
 				if (((String)DTO.get("nodeType")).compareTo("history") == 0) 
 					DTO.put("idHistory",new Integer(idNode));
 				else DTO.put("idNode",new Integer(idNode));
+				logger.info("New id gotten from DDBB.");
 			}catch (SQLException e) {
 				logger.warn("Error on getting new id from DDBB:"+e.getMessage());
 				throw new SemanticException("");
@@ -624,6 +686,24 @@ public class DataSourceSNJDBC  implements DataSource{
 							upd += " id_nodecur_content="+((Hashtable) dto.get("properties")).get("relatedContent")+", ";
 						}catch(Exception e){}						
 				}
+				if (((String) l.get(i)).compareTo("v_term_es") == 0){
+					if (((Hashtable) dto.get("properties")).containsKey("v_term_es"))
+						try{
+							upd += " v_term_es='"+((Hashtable) dto.get("properties")).get("v_term_es")+"', ";
+						}catch(Exception e){}			
+				}
+				if (((String) l.get(i)).compareTo("v_term_en") == 0){
+					if (((Hashtable) dto.get("properties")).containsKey("v_term_en"))
+						try{
+							upd += " v_term_en='"+((Hashtable) dto.get("properties")).get("v_term_en")+"', ";
+						}catch(Exception e){}			
+				}
+				if (((String) l.get(i)).compareTo("v_term_oc") == 0){
+					if (((Hashtable) dto.get("properties")).containsKey("v_term_oc"))
+						try{
+							upd += " v_term_oc='"+((Hashtable) dto.get("properties")).get("v_term_oc")+"', ";
+						}catch(Exception e){}			
+				}
 				if (i == l.size()-1){
 					upd = (String) upd.subSequence(0, upd.lastIndexOf(", "));
 				}
@@ -736,7 +816,8 @@ public class DataSourceSNJDBC  implements DataSource{
 			int res;
 			Hashtable hConf;
 			hConf  = this.configRelationQuery(0,"","RET",RelationType.ALL);
-			String condi = "id_paraula="+dto.get("idDest")+" AND v_type='"+dto.get("sourceType")+"' AND id_node="+dto.get("idSource");
+			//String condi = "id_paraula="+dto.get("idDest")+" AND v_type='"+dto.get("sourceType")+"' AND id_node="+dto.get("idSource");
+			String condi = "id_terme="+dto.get("idDest")+" AND v_type='"+dto.get("sourceType")+"' AND id_node="+dto.get("idSource");
 			try{
 				cb = this.connectBD();
 				res = AccesBD.executeDelete((String) hConf.get("table"),condi,cb.getConnection());
@@ -799,7 +880,12 @@ public class DataSourceSNJDBC  implements DataSource{
 			}else{
 				/*Camps generals*/
 				l.add("v_term");
-				if (nodeType.compareTo("history") != 0) {l.add("i_position"); lorder.add("i_position");
+				l.add("v_term_es");
+				l.add("v_term_en");
+				l.add("v_term_oc");
+				if (nodeType.compareTo("history") != 0) {
+					l.add("i_position"); 
+					lorder.add("i_position");
 				}else{/*camps especifics de 'history'*/
 					l.clear();
 					l.add("id_history");
@@ -885,6 +971,21 @@ public class DataSourceSNJDBC  implements DataSource{
 					}if (m.containsKey("id_nodecur_content")) 
 						if (((List)m.get("id_nodecur_content")).get(i)!= null){
 							properties.put("relatedContent", new Integer(Utility.toParaula(((List) m.get("id_nodecur_content")).get(i).toString())));						
+					}if (m.containsKey("v_term_es")){
+						if (((List)m.get("v_term_es")).get(i)!= null)
+							properties.put("v_term_es", Utility.toParaula(((List) m.get("v_term_es")).get(i).toString()));						
+						else
+							properties.put("v_term_es", "");
+					}if (m.containsKey("v_term_oc")){
+						if (((List)m.get("v_term_oc")).get(i)!= null)
+							properties.put("v_term_oc", Utility.toParaula(((List) m.get("v_term_oc")).get(i).toString()));
+						else
+							properties.put("v_term_oc", "");
+					}if (m.containsKey("v_term_en")){
+						if (((List)m.get("v_term_en")).get(i)!= null)
+							properties.put("v_term_en", Utility.toParaula(((List) m.get("v_term_en")).get(i).toString()));						
+						else
+							properties.put("v_term_en", "");
 					}
 					dto.put("properties",properties);	
 					lDTO.add(dto);
