@@ -134,8 +134,9 @@ public abstract class ServletMain extends HttpServlet {
             } else {
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
             }
-           
+            resp.flushBuffer();
             logger.info("Response:"+resp.getBufferSize());
+
         } catch (SOAPException se) 
        {
            throw new ServletException("SAAJ POST failed: " + se.getMessage());
