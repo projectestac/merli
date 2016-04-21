@@ -610,6 +610,7 @@ public class ServletCerca extends HttpServlet {
             logger.debug("novaCerca: " + novaCerca);
             
             textCerca = request.getParameter("textCerca");
+
             if (textCerca != null && !"".equals(textCerca)) {
                 // textCerca = new
                 // String(request.getParameter("textCerca").getBytes(),
@@ -617,6 +618,7 @@ public class ServletCerca extends HttpServlet {
             } else {
                 textCerca = "";
             }
+
             logger.debug("textCerca: " + textCerca);
 
             // If nobody clicked in the text field
