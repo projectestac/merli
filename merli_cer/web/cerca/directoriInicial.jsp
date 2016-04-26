@@ -162,7 +162,7 @@
 
         function doSubmit() {
             var value = document.cerca.textCerca.value;
-            document.cerca.textCerca.value = value.toString().replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&#34;");
+            document.cerca.textCerca.value = value.toString();
             document.cerca.nivell.value = 0;
             document.cerca.tipus.value = 'simple';
             document.cerca.novaCerca.value = 'si';
@@ -260,6 +260,7 @@
                        class="linial"><%=XMLCollection.getProperty("cerca.educacio.batxillerat", sLang)%>
                     </a></li>
                 <li>
+                    <!-- Amendez 22/03/2016 https://trello.com/c/hve2s1ni-->
                     <a href="directoriInicialArea.jsp?idLevel=9698"
                        class="linial"><%=XMLCollection.getProperty("cerca.educacio.fpmitja", sLang)%>
                     </a></li>

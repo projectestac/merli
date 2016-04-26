@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by aleix canals (docum) -->
-<xs:schema targetNamespace="http://localhost:8088/WSDLMerli/WSXtecTypes1.4" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mer="http://localhost:8088/WSDLMerli/WSXtecTypes1.4">
+<xs:schema targetNamespace="http://preproduccio.merli.xtec.cat/merli_ws2/WSXtecTypes1.5"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://preproduccio.merli.xtec.cat/merli_ws2/WSXtecTypes1.5">
 	<xs:element name="idElement">
 		<xs:annotation>
 			<xs:documentation>Identificador d'un element del DUC</xs:documentation>
@@ -8,7 +9,7 @@
 		<xs:complexType>
 			<xs:all>
 				<xs:element name="identifier" type="xs:int"/>
-				<xs:element ref="mer:typeElement"/>
+				<xs:element ref="typeElement"/>
 			</xs:all>
 		</xs:complexType>
 	</xs:element>
@@ -29,10 +30,10 @@
 			<xs:documentation>Identificador d'un recurs del MeRLí</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:choice>
-				<xs:element name="identifier" type="xs:int"/>
+			<xs:sequence>
+				<xs:element name="identifier" type="xs:string"/>
 				<xs:element name="type" type="xs:string" minOccurs="0"/>
-			</xs:choice>
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="elementDUC">
@@ -41,7 +42,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:idElement"/>
+				<xs:element ref="idElement"/>
 				<xs:element name="term" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Terme de l'element</xs:documentation>
@@ -50,8 +51,8 @@
 				<xs:element name="description" type="xs:string" minOccurs="0"/>
 				<xs:element name="category" type="xs:string" minOccurs="0"/>
 				<xs:element name="references" type="xs:string" minOccurs="0"/>
-				<xs:element ref="mer:taxonPath" minOccurs="0"/>
-				<xs:element ref="mer:DUCRelation" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="taxonPath" minOccurs="0"/>
+				<xs:element ref="DUCRelation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -61,7 +62,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:choice>
-				<xs:element ref="mer:taxon" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="taxon" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
@@ -71,8 +72,8 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:all>
-				<xs:element ref="mer:DUCRelationType"/>
-				<xs:element ref="mer:elementDUC"/>
+				<xs:element ref="DUCRelationType"/>
+				<xs:element ref="elementDUC"/>
 			</xs:all>
 		</xs:complexType>
 	</xs:element>
@@ -97,7 +98,7 @@
 		<xs:complexType>
 			<xs:all>
 				<xs:element name="id" type="xs:int"/>
-				<xs:element name="entry" type="mer:LangString"/>
+				<xs:element name="entry" type="LangString"/>
 			</xs:all>
 		</xs:complexType>
 	</xs:element>
@@ -107,13 +108,15 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:general"/>
-				<xs:element ref="mer:lifeCycle"/>
-				<xs:element ref="mer:metaMetadata"/>
-				<xs:element ref="mer:technical"/>
-				<xs:element ref="mer:educational"/>
-				<xs:element ref="mer:rights"/>
-				<xs:element ref="mer:classification" maxOccurs="unbounded"/>
+				<xs:element ref="general"/>
+				<xs:element ref="lifeCycle"/>
+				<xs:element ref="metaMetadata"/>
+				<xs:element ref="technical"/>
+				<xs:element ref="educational"/>
+				<xs:element ref="rights"/>
+				<xs:element ref="relation" maxOccurs="unbounded"/>
+				<xs:element ref="classification" maxOccurs="unbounded"/>
+				<xs:element ref="descripcioFisica"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -123,10 +126,10 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:identifier"/>
-				<xs:element name="title" type="mer:LangString"/>
-				<xs:element ref="mer:language" maxOccurs="unbounded"/>
-				<xs:element name="description" type="mer:LangString"/>
+				<xs:element ref="identifier"/>
+				<xs:element name="title" type="LangString"/>
+				<xs:element ref="language" maxOccurs="unbounded"/>
+				<xs:element name="description" type="LangString"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -136,9 +139,9 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="version" type="mer:LangString"/>
-				<xs:element name="status" type="mer:sourceValue"/>
-				<xs:element ref="mer:contribute" maxOccurs="unbounded"/>
+				<xs:element name="version" type="LangString"/>
+				<xs:element name="status" type="sourceValue"/>
+				<xs:element ref="contribute" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -148,10 +151,10 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:identifier"/>
-				<xs:element ref="mer:contribute" maxOccurs="unbounded"/>
+				<xs:element ref="identifier"/>
+				<xs:element ref="contribute" maxOccurs="unbounded"/>
 				<xs:element name="metadataSchema" type="xs:string" minOccurs="0"/>
-				<xs:element ref="mer:language"/>
+				<xs:element ref="language"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -163,9 +166,9 @@
 			<xs:sequence>
 				<xs:element name="format" type="xs:string" maxOccurs="unbounded"/>
 				<xs:element name="location" type="xs:string"/>
-				<xs:element name="installationRemarks" type="mer:LangString" minOccurs="0"/>
-				<xs:element name="otherPlataformRequirements" type="mer:LangString" minOccurs="0"/>
-				<xs:element ref="mer:duration"/>
+				<xs:element name="installationRemarks" type="LangString" minOccurs="0"/>
+				<xs:element name="otherPlataformRequirements" type="LangString" minOccurs="0"/>
+				<xs:element ref="duration"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -175,15 +178,15 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="learningResourceType" type="mer:sourceValue" maxOccurs="unbounded"/>
-				<xs:element name="intendedEndUserRole" type="mer:sourceValue" maxOccurs="unbounded"/>
-				<xs:element name="context" type="mer:sourceValue" maxOccurs="unbounded"/>
+				<xs:element name="learningResourceType" type="sourceValue" maxOccurs="unbounded"/>
+				<xs:element name="intendedEndUserRole" type="sourceValue" maxOccurs="unbounded"/>
+				<xs:element name="context" type="sourceValue" maxOccurs="unbounded"/>
 				<xs:element name="typicalAgeRange" type="xs:string"/>
-				<xs:element name="difficulty" type="mer:sourceValue"/>
+				<xs:element name="difficulty" type="sourceValue"/>
 				<xs:element name="typicalLearningTime">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element ref="mer:duration"/>
+							<xs:element ref="duration"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
@@ -201,12 +204,12 @@
 						<xs:documentation>és gratuit?</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="copyrightAndOtherRestrictions" type="mer:sourceValue">
+				<xs:element name="copyrightAndOtherRestrictions" type="sourceValue">
 					<xs:annotation>
 						<xs:documentation>té llicència?</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="description" type="mer:LangString">
+				<xs:element name="description" type="LangString">
 					<xs:annotation>
 						<xs:documentation>descripció de la llicència</xs:documentation>
 					</xs:annotation>
@@ -227,6 +230,18 @@
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
+	</xs:element>	
+	<xs:element name="relation">
+		<xs:annotation>
+			<xs:documentation>Defineix la relació entre aquest recurs i altres recursos</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="kind" type="xs:string"/>
+				<xs:element name="resource" type="xs:int"/>
+				<xs:element name="description" type="LangString"/>
+			</xs:sequence>
+		</xs:complexType>
 	</xs:element>
 	<xs:element name="classification">
 		<xs:annotation>
@@ -234,12 +249,26 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="purpose" type="mer:sourceValue"/>
-				<xs:element ref="mer:taxonPath"/>
-				<xs:element name="description" type="mer:LangString" minOccurs="0"/>
+				<xs:element name="purpose" type="sourceValue"/>
+				<xs:element ref="taxonPath"/>
+				<xs:element name="description" type="LangString" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="descripcioFisica">
+		<xs:annotation>
+			<xs:documentation>Descriu les característiques pròpies dels recursos físics</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="caracteristiques" type="xs:string"/>
+				<xs:element name="unitat" type="unitat"/>
+				<xs:element name="identificadors" type="identificadors"/>
+				<xs:element name="disponibleA" type="disponibleA"/>
+				<xs:element name="format" type="xs:string" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
 	<xs:complexType name="sourceValue">
 		<xs:annotation>
 			<xs:documentation>Camp amb un valor value i un valor source</xs:documentation>
@@ -260,13 +289,38 @@
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
-	</xs:element>
+	</xs:element>	
+	<xs:complexType name="unitat">
+		<xs:annotation>
+			<xs:documentation>Defineix una unitat</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" type="xs:int"/>
+			<xs:element name="name" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="identificadors">
+		<xs:annotation>
+			<xs:documentation>Identificadors físics</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="idResource" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="disponibleA">
+		<xs:annotation>
+			<xs:documentation>Unitats on el recurs està disponible</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="unitat" type="unitat"  maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>	
 	<xs:complexType name="LangString">
 		<xs:annotation>
 			<xs:documentation>String amb atribut de llenguatge</xs:documentation>
 		</xs:annotation>
 		<xs:all>
-			<xs:element ref="mer:string"/>
+			<xs:element ref="string"/>
 		</xs:all>
 	</xs:complexType>
 	<xs:element name="identifier">
@@ -286,7 +340,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="role" type="mer:sourceValue"/>
+				<xs:element name="role" type="sourceValue"/>
 				<xs:element name="entity" type="xs:string"/>
 				<xs:element name="date">
 					<xs:complexType>
@@ -314,7 +368,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:idResource"/>
+				<xs:element ref="idResource"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -324,7 +378,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:idResource"/>
+				<xs:element ref="idResource"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -334,7 +388,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:lom"/>
+				<xs:element ref="lom"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -344,7 +398,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:idResource"/>
+				<xs:element ref="idResource"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -354,22 +408,22 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="mer:elementDUC"/>
+				<xs:element ref="elementDUC"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="taxonPath">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="source" type="mer:LangString"/>
-				<xs:element ref="mer:taxon" maxOccurs="unbounded"/>
+				<xs:element name="source" type="LangString"/>
+				<xs:element ref="taxon" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="listDUC">
 		<xs:complexType>
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="mer:elementDUC"/>
+				<xs:element ref="elementDUC"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
