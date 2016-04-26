@@ -38,6 +38,8 @@ public class ServletMerli extends ServletMain {
     public SOAPMessage processMessage(SOAPMessage smRequest) {
         SOAPMessage smResponse = null;
         String sQuery = null;
+        logger.debug("processMessage SERVLETMERLI");
+        logger.debug("smRequest SERVLETMERLI-> "+smRequest);
         try {
 
             SOAPBody sbRequest = smRequest.getSOAPPart().getEnvelope().getBody();
@@ -57,36 +59,40 @@ public class ServletMerli extends ServletMain {
             sQuery = sbeRequest.getElementName().getLocalName();//agafa la operacio a realitzar
 
             String[] j = smRequest.getMimeHeaders().getHeader("host");
+
+
+            //logger.debug("HEADER SERVLETMERLI-> "+ smRequest.getMimeHeaders());
+
             printLog(sQuery + "-INIT", j[0], "WSMerli");
 
             //AddResource
             if (ADDRESOURCE.equals(sQuery)) {
-                smResponse = addResource((SOAPBodyElement) sbeRequest.getChildElements(sf.createName("lom")).next(), "ok");
+                smResponse = addResource((SOAPElement) sbeRequest.getChildElements(sf.createName("lom")).next(), "ok");
             }
 
             //SetResource
             if (SETRESOURCE.equals(sQuery)) {
-                smResponse = setResource((SOAPBodyElement) sbeRequest.getChildElements(sf.createName("lom")).next(), "ok");
+                smResponse = setResource((SOAPElement) sbeRequest.getChildElements(sf.createName("lom")).next(), "ok");
             }
 
             //DelResource
             if (DELRESOURCE.equals(sQuery)) {
-                smResponse = delResource((SOAPBodyElement) sbeRequest.getChildElements(sf.createName("idResource")).next(), "ok");
+                smResponse = delResource((SOAPElement) sbeRequest.getChildElements(sf.createName("idResource")).next(), "ok");
             }
 
             //unpublishResource
             if (UNPUBLISHRESOURCE.equals(sQuery)) {
-                smResponse = unpublishResource((SOAPBodyElement) sbeRequest.getChildElements(sf.createName("idResource")).next());
+                smResponse = unpublishResource((SOAPElement) sbeRequest.getChildElements(sf.createName("idResource")).next());
             }
 
             //GetResource
             if (GETRESOURCE.equals(sQuery)) {
-                smResponse = getResource((SOAPBodyElement) sbeRequest.getChildElements(sf.createName("idResource")).next());//,el);
+                smResponse = getResource((SOAPElement) sbeRequest.getChildElements(sf.createName("idResource")).next());//,el);
             }
 
             //EditResource
             if (EDITRESOURCE.equals(sQuery)) {
-                smResponse = editResource((SOAPBodyElement) sbeRequest.getChildElements(sf.createName("lom")).next(), "ok");//,el);
+                smResponse = editResource((SOAPElement) sbeRequest.getChildElements(sf.createName("lom")).next(), "ok");//,el);
             }
 
             printLog(sQuery + "-END", "Server", "WSMerli");
@@ -109,6 +115,9 @@ public class ServletMerli extends ServletMain {
     public SOAPMessage processMessage(SOAPMessage smRequest, String ip) {
         SOAPMessage smResponse = null;
         String sQuery = null;
+
+        logger.debug("processMessage SERVLETMERLI IP");
+        logger.debug("smRequest SERVLETMERLI IP-> "+smRequest);
         try {
 
             SOAPBody sbRequest = smRequest.getSOAPPart().getEnvelope().getBody();
@@ -152,6 +161,7 @@ public class ServletMerli extends ServletMain {
 
             //GetResource
             if (GETRESOURCE.equals(sQuery)) {
+                //smResponse = getResource(getChildByLocalName(sbeRequest, "idResource"));
                 smResponse = getResource(getChildByLocalNameGetResource(sbeRequest, "idResource"));// ,el);
             }
 
@@ -171,6 +181,7 @@ public class ServletMerli extends ServletMain {
 
         return smResponse;
     }
+
 /* NADIM ADDED GET RESOURCE*/
     private SOAPElement getChildByLocalNameGetResource(SOAPBodyElement sbeRequest, String localName) {
         Node element = null;
@@ -223,7 +234,7 @@ public class ServletMerli extends ServletMain {
      * @throws MerliDBException
      * @throws SOAPException
      */
-    private SOAPMessage setResource(SOAPBodyElement sbeRequest, String ip) throws MerliDBException, SOAPException {
+    private SOAPMessage setResource(SOAPElement sbeRequest, String ip) throws MerliDBException, SOAPException {
         WSMerliBD wsmbd = new WSMerliBD();
         Lom lom;
 
@@ -333,7 +344,7 @@ public class ServletMerli extends ServletMain {
      * @throws SOAPException
      * @throws MerliDBException
      */
-    public SOAPMessage delResource(SOAPBodyElement sbeRequest, String ip) throws SOAPException, MerliDBException {
+    public SOAPMessage delResource(SOAPElement sbeRequest, String ip) throws SOAPException, MerliDBException {
 
         WSMerliBD wsmbd = new WSMerliBD();
 
@@ -373,7 +384,7 @@ public class ServletMerli extends ServletMain {
      * @throws SOAPException
      * @throws MerliDBException
      */
-    public SOAPMessage unpublishResource(SOAPBodyElement sbeRequest) throws SOAPException, MerliDBException {
+    public SOAPMessage unpublishResource(SOAPElement sbeRequest) throws SOAPException, MerliDBException {
 
         WSMerliBD wsmbd = new WSMerliBD();
 
@@ -403,7 +414,7 @@ public class ServletMerli extends ServletMain {
      * @throws SOAPException
      * @throws MerliDBException
      */
-    public SOAPMessage addResource(SOAPBodyElement sbeRequest, String ip) throws SOAPException, MerliDBException {
+    public SOAPMessage addResource(SOAPElement sbeRequest, String ip) throws SOAPException, MerliDBException {
 
         WSMerliBD wsmbd = new WSMerliBD();
         wsmbd.setLomes(false);
@@ -462,11 +473,12 @@ public class ServletMerli extends ServletMain {
      * Retorna un Result indicant la operació i que l'execució ha estat correcte
      * i amb l'objecte sol·licitat en un Lom.
      *
-     * @param node SOAPBodyElement amb un IdResource
+     * @param  "node  SOAPBodyElement" amb un IdResource
      * @return
      * @throws SOAPException
      * @throws MerliDBException
      */
+    //OLD -> Naseq [casting problem]
     public SOAPMessage getResource(SOAPElement sbRequest/*,SOAPBodyElement sbLomes*/) throws SOAPException, MerliDBException {
 
         WSMerliBD wsmbd = new WSMerliBD();
@@ -495,7 +507,7 @@ public class ServletMerli extends ServletMain {
         return smResponse;
     }
 
-    public SOAPMessage editResource(SOAPBodyElement sbeRequest, String ip) throws SOAPException, MerliDBException {
+    public SOAPMessage editResource(SOAPElement sbeRequest, String ip) throws SOAPException, MerliDBException {
         SOAPMessage smResponse = null;
         IdResource url = new IdResource();
         Properties p;
