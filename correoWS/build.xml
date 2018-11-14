@@ -50,6 +50,7 @@
     <javac destdir="${build.dir}"
            debug="${debug}"
            deprecation="${deprecation}"
+           encoding="iso-8859-1"
            optimize="${optimize}">
         <src path="${src.dir}"/>
         <classpath>

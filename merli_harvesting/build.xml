@@ -16,7 +16,7 @@
         <property name="ant.build.javac.source" value="1.7"/>
         <property name="ant.build.javac.target" value="1.7"/>
         <property name="ant.build.javac.encoding" value="ISO-8859-15"/>
-	
+
     <!-- Patterns -->
 	<patternset id="jsps" >
 		<include name="*.jsp"/>
@@ -25,7 +25,7 @@
 		<include name="*.js"/>
 	</patternset>
 
-    
+
     <patternset id="logs" >
       <include name="**/*.log"/>
       <include name="**/*.txt"/>
@@ -48,6 +48,10 @@
         <property name="server.name" value="INT" />
     </target>
 
+    <target name="vm_init">
+        <property name="server.name" value="VM" />
+    </target>
+
 
     <!-- =================================================================== -->
   <!-- MAIN                                                                -->
@@ -62,6 +66,10 @@
 
     <target name="int" depends="int_init,deploy" description="Build development">
         <echo message="***Merli Harvesting creat correctament! integration!"/>
+    </target>
+
+    <target name="vm" depends="vm_init,deploy" description="Build development">
+        <echo message="***Merli Harvesting creat correctament!"/>
     </target>
   <target name="all" depends="pro, deploy">
     <echo message="***Merli Harvesting has been built correctly!"/>
@@ -81,10 +89,10 @@
   <!-- =================================================================== -->
   <target name="compile" depends="clean, init">
     <mkdir dir="${build.dir}/WEB-INF/classes"/>
-    <javac destdir="${build.dir}/WEB-INF/classes" 
-           debug="${debug}" 
+    <javac destdir="${build.dir}/WEB-INF/classes"
+           debug="${debug}"
            deprecation="${deprecation}"
-           optimize="${optimize}" 
+           optimize="${optimize}"
 		   encoding="${ant.build.javac.encoding}"
 		   source="${ant.build.javac.source}"
     	   target="${ant.build.javac.target}"
@@ -117,15 +125,15 @@
 	    <copy todir="${build.dir}">
 	      <fileset dir="web/" includes="**/index.html,**/js/**"/>
 	    </copy>
-     </target>	
-	
-   <target name="dist" 
+     </target>
+
+   <target name="dist"
           depends="build">
-    <war destfile="${build.dir}/merli_harvesting.war" 
+    <war destfile="${build.dir}/merli_harvesting.war"
          webxml="web/WEB-INF/web.xml">
-    	
+
          <manifest>
-           <attribute name="Built-By" 
+           <attribute name="Built-By"
                       value="${user.name}"/>
         </manifest>
         <lib dir="${lib.dir}">
@@ -145,13 +153,13 @@
         	<include name="wsrf-1.0.jar"/>
            	<include name="xercesImpl.jar"/>
 		</lib>
-    	
+
 		<classes dir="${build.dir}" prefix=""/>
 		<zipfileset dir="${src.dir}" prefix="WEB-INF/classes">
 		</zipfileset>
     	<zipfileset dir="" prefix="">
     		<patternset refid="jsps"/>
-    	</zipfileset> 	
+    	</zipfileset>
 		<zipfileset dir="${web.dir}/logs" prefix="logs">
 			<patternset refid="logs"/>
 		</zipfileset>
@@ -164,19 +172,18 @@
         </zipfileset>
     </war>
   </target>
-  
+
   <target name="deploy" depends="dist">
       <mkdir dir="${dist.dir}/${server.name}"/>
     <ear destfile="${dist.dir}/${server.name}/merli_harvesting.ear"
          appxml="web/WEB-INF/application.xml">
          <manifest>
-           <attribute name="Built-By" 
+           <attribute name="Built-By"
                       value="${user.name}"/>
          </manifest>
       <fileset dir="${build.dir}" includes="merli_harvesting.war"/>
     </ear>
     <delete dir="${build.dir}"/>
   </target>
-		
-</project>
 
+</project>

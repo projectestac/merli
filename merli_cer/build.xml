@@ -44,6 +44,10 @@
         <property name="server.name" value="INT" />
     </target>
 
+    <target name="vm_init">
+        <property name="server.name" value="VM" />
+    </target>
+
     <!-- =================================================================== -->
     <!-- MAIN                                                                -->
     <!-- =================================================================== -->
@@ -58,6 +62,10 @@
 
     <target name="int" depends="int_init,deploy" description="Build development">
         <echo message="***CERCADOR creat correctament! integration!"/>
+    </target>
+
+    <target name="vm" depends="vm_init,deploy" description="Build development">
+        <echo message="***CERCADOR creat correctament!"/>
     </target>
 
     <target name="all" depends="pro, deploy" description="Build everything">
