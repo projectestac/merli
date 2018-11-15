@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.DucObject" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.DucObject" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.Hashtable, java.util.ArrayList, simpple.xtec.web.util.XMLCollection" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -9,7 +9,7 @@
     if (Configuracio.isVoid()) {
         Configuracio.carregaConfiguracio();
     }
-    String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+    String urlLocal = Configuracio.getContextURL();
     String usuari = (String) session.getAttribute("nomUsuari");
 
     int comentarisSuspesos = 0;

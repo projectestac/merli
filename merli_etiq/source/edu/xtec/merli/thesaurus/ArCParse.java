@@ -97,15 +97,13 @@ public class ArCParse {
 			/**
 			 * Carrega l'xml desde una url o des del disc segons el path 'xmlPath' donat.
 			 */
-		
-			if(xmlPath.toLowerCase().indexOf("http://")!=0 && xmlPath.toLowerCase().indexOf("ftp://")!=0){
-				File f = new File(xmlPath);
-				dDesc = builder.build(f);
-			}else{
-				URL u = new URL(xmlPath);
-				dDesc = builder.build(xmlPath);
+
+			if (xmlPath.matches("(?i)(^(https?|ftp)://.*$)")) {
+				dDesc = builder.build(new URL(xmlPath));
+			} else {
+				dDesc = builder.build(new File(xmlPath));
 			}
-	       
+
 //			Element el = getRootElement().getChild("vdex");
 			Iterator itr = dDesc.getRootElement().getChildren().iterator();
 			int i = 0;

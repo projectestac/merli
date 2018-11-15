@@ -204,6 +204,7 @@
             <patternset includes="log4j.properties"/>
             <patternset includes="database.properties"/>
             <patternset includes="semanticnet.properties"/>
+            <patternset includes="services.properties"/>
         </zipfileset>
 
     </war>

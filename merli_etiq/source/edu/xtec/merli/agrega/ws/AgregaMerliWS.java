@@ -57,27 +57,6 @@ public class AgregaMerliWS extends AgregaWS{
          return smRequest;
 	}    
 
-	
-	
-
-	private URL getUrl(int context, int server) {
-		URL url = null;
-		try {
-			switch (server){
-				case AgregaWS.LOCAL: url = new URL("http://localhost:8090/merli_ws_melt/merli"); break;
-				case AgregaWS.INTEGRACIO: url = new URL("http://localhost:8090/merli_ws/merli"); break;
-				case AgregaWS.TEST:	url = new URL("http://xtec-wc.educacio.intranet:7778/e13_merli_ws2/merli");break;
-				case AgregaWS.ACCEPT: url = new URL("http://acc.xtec.cat/e13_merli_ws2/merli");break;
-				case AgregaWS.PRODU: url = new URL("http://aplitic.xtec.cat/e13_merli_ws2/merli");break;
-				default: url = new URL("http://localhost:8090/merli_ws/merli");			
-			}
-			return url;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-	
-	
 
 	public SOAPElement getResource(IdResource idResource, int servidor) {
 		return processOperation(AgregaWS.GETRESOURCE, idResource, servidor);

@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.ComentariObject,simpple.xtec.web.util.RecursObject,simpple.xtec.web.util.NoticiaObject" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.ComentariObject,simpple.xtec.web.util.RecursObject,simpple.xtec.web.util.NoticiaObject" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, java.util.Hashtable, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.DucObject, simpple.xtec.web.util.XMLCollection" %>
 <%@ page import="simpple.xtec.web.util.ResultGeneratorUtil"%>
 <%@ page pageEncoding="UTF-8" %>
@@ -50,7 +50,7 @@
     
       Connection myConnection = UtilsCercador.getConnectionFromPool();  
   
-      String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;      
+      String urlLocal = Configuracio.getHostURL();
       String contextWeb = Configuracio.contextWebAplicacio;
       String cssFile = urlLocal + "/" + contextWeb + "/css/merli.css";
       String cssFilePrint = urlLocal + "/" + contextWeb + "/css/merli-print.css";

@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.FitxaRecurs,simpple.xtec.web.util.ComentariObject" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.FitxaRecurs,simpple.xtec.web.util.ComentariObject" %>
 <%@ page import="org.apache.lucene.analysis.standard.StandardAnalyzer,org.apache.lucene.queryParser.QueryParser,org.apache.lucene.search.*,org.apache.lucene.document.Document" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, simpple.xtec.web.util.UtilsCercador" %>
 <%!
@@ -15,7 +15,7 @@
       }
       
   Logger logger = Logger.getLogger("fitxaRecurs.jsp");  
-  String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;               
+  String urlLocal = Configuracio.getContextURL();
   %>
 <html>
 <head>

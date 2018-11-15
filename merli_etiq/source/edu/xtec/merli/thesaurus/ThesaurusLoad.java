@@ -98,14 +98,13 @@ public class ThesaurusLoad {
 			/**
 			 * Carrega l'xml desde una url o des del disc segons el path 'xmlPath' donat.
 			 */
-		
-			if(xmlPath.toLowerCase().indexOf("http://")!=0 && xmlPath.toLowerCase().indexOf("ftp://")!=0){
-				File f = new File(xmlPath);
-				dDesc = builder.build(f);
-			}else{
-				URL u = new URL(xmlPath);
-				dDesc = builder.build(xmlPath);
+
+			if (xmlPath.matches("(?i)(^(https?|ftp)://.*$)")) {
+				dDesc = builder.build(new URL(xmlPath));
+			} else {
+				dDesc = builder.build(new File(xmlPath));
 			}
+
 			//Class.forName("oracle.jdbc.driver.OracleDriver");
 			DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
 			con = DriverManager.getConnection("jdbc:oracle:thin:@aleixportatil2:1521:XTEC", "acanals5","ac4263");

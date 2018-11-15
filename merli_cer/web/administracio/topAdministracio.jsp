@@ -9,7 +9,7 @@
 
 
            
-   String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;      
+   String urlLocal = Configuracio.getHostURL();      
    String contextWeb = Configuracio.contextWebAplicacio;
   // String cssFile = urlLocal + "/" + contextWeb + "/css/panellNew.css";
 
@@ -39,8 +39,6 @@
       usuariNomComplet = UtilsCercador.getNomComplet((String) session.getAttribute("user"));
       session.setAttribute("usuariNomComplet", usuariNomComplet);
       }
-
-
 %>
 <html>
 <head>

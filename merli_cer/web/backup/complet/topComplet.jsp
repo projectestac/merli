@@ -31,7 +31,7 @@
    
    String urlCercador = Configuracio.urlPanellCercador;
    String urlIndexador = Configuracio.urlPanellIndexador;   
-   String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;   
+   String urlLocal = Configuracio.getHostURL();   
    String contextWeb = Configuracio.contextWebAplicacio;   
 %>
   <ul>
@@ -56,7 +56,7 @@
 		    <td rowspan="100" width="10" align="left">&nbsp;</td>
 		  </tr>
 		  <tr class="menuEsqNivell1">
-		      <td>Cercador avançat professorat</td>
+		      <td>Cercador avanÃ§at professorat</td>
 		  </tr>
 		  <tr class="blankStyle">
 		      <td>&nbsp;</td>

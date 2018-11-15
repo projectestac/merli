@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.XMLCollection" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.XMLCollection" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, java.util.StringTokenizer, simpple.xtec.web.util.ComentariObject" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -27,7 +27,7 @@
         }
         Locale myLocale = new Locale(idioma);
 
-        String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+        String urlLocal = Configuracio.getContextURL();
 
 %> 
 
@@ -245,7 +245,7 @@
                 if ((titol == null) || titol.equals("null")) {
                     titol = "Sense títol";
                 }
-                String fitxaUrl = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
+                String fitxaUrl = Configuracio.getContextURL("/");
                 fitxaUrl += "cerca/fitxaRecurs.jsp?idRecurs=" + comentariLog.idRecurs + "#" + comentariLog.id;
 
         %>

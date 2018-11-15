@@ -202,29 +202,6 @@ public class AgregaServiceWS extends AgregaWS {
 		return se;
 	}
 
-	
-
-	private URL getUrl(int context, int server) {
-		URL url = null;
-		try {
-			switch (server) {
-			case AgregaWS.LOCAL: url = new URL("agrega-int.educacio.intranet/dri-1/services/SrvDRIService"); break;
-			case AgregaWS.TEST:	 url = new URL("http://ccaa.agrega.indra.es/dri-1/services/SrvDRIService"); break;
-			case AgregaWS.INTEGRACIO: url = new URL("agrega-int.educacio.intranet/dri-1/services/SrvDRIService"); break;
-			case AgregaWS.ACCEPT:
-			case AgregaWS.PRODU:
-			default:
-				url = new URL("http://contenidos.proyectoagrega.es/dri-1/services/SrvDRIService");
-			}
-			return url;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	
-	
-	
 
 	public SOAPElement sendResource(AgregaResource aResource, int servidor) {
 		return processOperation(AgregaWS.SENDRESOURCE, aResource, servidor);

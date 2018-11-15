@@ -185,22 +185,6 @@ public class AgregaSQIWS extends AgregaWS {
 	}
 
 
-	public static URL getUrl(int context, int server){
-	  	URL url = null;
-		try{
-			switch (server){
-				case AgregaWS.LOCAL: url = new URL("http://agrega-int.educacio.intranet/dri-1/services/SrvDRIService"); break;
-				case AgregaWS.TEST:	url = new URL("http://ccaa.agrega.indra.es/dri-1/services/SrvSQIService"); break;
-				case AgregaWS.ACCEPT:
-				case AgregaWS.PRODU:url = new URL("http://redes.agrega.indra.es/dri-1/services/SrvSQIService"); break;
-				default: 	url = new URL("http://contenidos.proyectoagrega.es/dri-1/services/SrvSQIService");			
-			}
-		}catch(Exception e){}
-		
-		return url;
-	}
-
-
 	public boolean estasActivo(int servidor) {
 		SOAPElement se = null;
 		SQIQuery siq = new SQIQuery();

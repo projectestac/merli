@@ -20,6 +20,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -45,6 +46,20 @@ import simpple.xtec.web.util.UtilsCercador;
 public class AgregaUtils {
 	static final Logger logger = Logger.getLogger(simpple.xtec.agrega.AgregaUtils.class);
 	
+
+	/** Web service configuration */
+	private static final Properties config = new Properties();
+
+	/** Loads the web service configuration */
+	static {
+	    try {
+            config.load(AgregaUtils.class
+                .getResourceAsStream("/services.properties"));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
+
 
  	/**
  	 * Funcionalitat per treure per pantalla el cos dell missatge soap.
@@ -94,38 +109,38 @@ public class AgregaUtils {
             switch (context){
             	case AgregaWS.MERLI: 
 	    			switch (server){
-	    				case AgregaWS.TEST: url = new URL("http://integracio.merli.xtec.cat/merli_ws2/merli"); break;
-	    				case AgregaWS.LOCAL:	url = new URL("http://integracio.merli.xtec.cat/merli_ws2/merli");break;
-	    				case AgregaWS.ACCEPT: url = new URL("http://preproduccio.merli.xtec.cat/merli_ws2/merli");break;
-	    				case AgregaWS.PRODU: url = new URL("http://merli.xtec.cat/merli_ws2/merli");break;
-	    				default: url = new URL("http://merli.xtec.cat/merli_ws2/merli");
+	    				case AgregaWS.LOCAL: url = new URL(config.getProperty("service.merli.local")); break;
+	    				case AgregaWS.TEST: url = new URL(config.getProperty("service.merli.testing")); break;
+	    				case AgregaWS.ACCEPT: url = new URL(config.getProperty("service.merli.acceptance")); break;
+	    				case AgregaWS.PRODU: url = new URL(config.getProperty("service.merli.production")); break;
+	    				default: url = new URL(config.getProperty("service.merli.default"));
 	    			}
 	    			break;
             	case AgregaWS.AGREGA: 
 	    			switch (server){
-	    				case AgregaWS.LOCAL: url = new URL("http://agrega-int.educacio.intranet/dri-1/services/SrvDRIService"); break;
-	    				case AgregaWS.TEST:	url = new URL("http://ccaa.agrega.indra.es/dri-1/services/SrvDRIService"); break;
-	    				case AgregaWS.ACCEPT: 
-	    				case AgregaWS.PRODU: url = new URL("http://redes.agrega.indra.es/dri-1/services/SrvDRIService"); break;
-	    				default: 	url = new URL("http://contenidos.proyectoagrega.es/dri-1/services/SrvDRIService");			
+	    				case AgregaWS.LOCAL: url = new URL(config.getProperty("service.agrega.local")); break;
+	    				case AgregaWS.TEST: url = new URL(config.getProperty("service.agrega.testing")); break;
+	    				case AgregaWS.ACCEPT: url = new URL(config.getProperty("service.agrega.acceptance")); break;
+	    				case AgregaWS.PRODU: url = new URL(config.getProperty("service.agrega.production")); break;
+	    				default: url = new URL(config.getProperty("service.agrega.default"));
 	    			}
 	    			break;
             	case AgregaWS.AGREGA_SQI: 
 	    			switch (server){
-	    				case AgregaWS.LOCAL: url = new URL("http://agrega-int.educacio.intranet/dri-1/services/SrvDRIService"); break;
-	    				case AgregaWS.TEST:	url = new URL("http://ccaa.agrega.indra.es/dri-1/services/SrvSQIService"); break;
-	    				case AgregaWS.ACCEPT:
-	    				case AgregaWS.PRODU:url = new URL("http://redes.agrega.indra.es/dri-1/services/SrvSQIService"); break;
-	    				default: 	url = new URL("http://contenidos.proyectoagrega.es/dri-1/services/SrvSQIService");			
+	    				case AgregaWS.LOCAL: url = new URL(config.getProperty("service.agrega.sqi.local")); break;
+	    				case AgregaWS.TEST: url = new URL(config.getProperty("service.agrega.sqi.testing")); break;
+	    				case AgregaWS.ACCEPT: url = new URL(config.getProperty("service.agrega.sqi.acceptance")); break;
+	    				case AgregaWS.PRODU: url = new URL(config.getProperty("service.agrega.sqi.production")); break;
+	    				default: url = new URL(config.getProperty("service.agrega.sqi.default"));
 	    			}
 	    			break;
             	case AgregaWS.AGREGA_SESSIONS: 
 	    			switch (server){
-	    				case AgregaWS.LOCAL:url = new URL("http://agrega-int.educacio.intranet/dri-1/services/SrvSesionesService"); break;
-	    				case AgregaWS.TEST:	url = new URL("http://ccaa.agrega.indra.es/dri-1/services/SrvSesionesService"); break;
-	    				case AgregaWS.ACCEPT:
-	    				case AgregaWS.PRODU:url = new URL("http://redes.agrega.indra.es/dri-1/services/SrvSesionesService"); break;
-	    				default: 	url = new URL("http://contenidos.proyectoagrega.es/dri-1/services/SrvSesionesService");			
+	    				case AgregaWS.LOCAL: url = new URL(config.getProperty("service.agrega.sessions.local")); break;
+	    				case AgregaWS.TEST: url = new URL(config.getProperty("service.agrega.sessions.testing")); break;
+	    				case AgregaWS.ACCEPT: url = new URL(config.getProperty("service.agrega.sessions.acceptance")); break;
+	    				case AgregaWS.PRODU: url = new URL(config.getProperty("service.agrega.sessions.production")); break;
+	    				default: url = new URL(config.getProperty("service.agrega.sessions.default"));
 	    			}
 	    			break;
     		}
