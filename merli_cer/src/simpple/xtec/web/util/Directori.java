@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -203,7 +205,42 @@ public class Directori {
 		  }
 		return recursosMesVisitats;
 	    }
-	
+
+
+    /**
+     * Returns a list of the most recently indexed resources.
+     *
+     * @return      Resource list
+     */
+    public List<RecursObject> findNewResources() {
+        final List<RecursObject> items = new ArrayList<>();
+
+        final String query =
+            "SELECT * FROM (" +
+            "  SELECT id, titol, data_primera_indexacio" +
+            "   FROM recursos JOIN log_indexacio ON id = recurs_id" +
+            "   ORDER BY isnew DESC, data_primera_indexacio DESC, id DESC" +
+            ") WHERE ROWNUM <= 15";
+
+
+        try (
+            Statement statement = myConnection.createStatement();
+            ResultSet results = statement.executeQuery(query);
+        ) {
+            while (results.next()) {
+                RecursObject resource = new RecursObject();
+                resource.id = results.getString("id");
+                resource.titol = results.getString("titol");
+                resource.indexedAt = results.getString("data_primera_indexacio");
+                items.add(resource);
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+        }
+
+        return items;
+    }
+
 
 	public ArrayList getRecursosMesBenValorats (int ducId) {
 		ArrayList recursosMesBenValorats = null; 

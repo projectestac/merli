@@ -1566,3 +1566,44 @@ button.smallbutton {
 #dataFinalPublicacio.greytext {
     color:#AAAAAA !important;
 }
+
+/* Home page: New resources */
+
+#right .new-resources {
+  margin-bottom: 20px;
+}
+
+#right .new-resources h1 {
+  border-bottom: 2px solid #9a9a9a;
+  line-height: inherit;
+  margin: 5px 0;
+  padding: 0 0 5px 0;
+}
+
+#right .new-resources ul {
+  padding: 0;
+  margin: 0;
+}
+
+#right .new-resources li {
+  list-style-type: none;
+  padding: 5px !important;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+}
+
+#right .new-resources a {
+  display: inline-block;
+  width: 100%;
+}
+
+#right .new-resources a:hover,
+.new-resources a:focus {
+  color: #333;
+}
+
+#right .new-resources time {
+  color: #666;
+  margin-left: 2em;
+  white-space: nowrap;
+}
