@@ -51,7 +51,8 @@
            debug="${debug}"
            deprecation="${deprecation}"
            encoding="iso-8859-1"
-           optimize="${optimize}">
+           optimize="${optimize}"
+           includeantruntime="false">
         <src path="${src.dir}"/>
         <classpath>
             <pathelement location="${lib.dir}/soap.jar"/>
