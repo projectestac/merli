@@ -226,7 +226,10 @@
         <mkdir dir="${build.dir}/semanticnet"/>
 
         <copy todir="${build.dir}/semanticnet">
-            <fileset dir="${build.dir}/WEB-INF/classes" includes="edu/xtec/merli/semanticnet/**/*.class"/>
+            <fileset dir="${build.dir}/WEB-INF/classes"
+                     includes="edu/xtec/merli/semanticnet/**/*.class"/>
+            <fileset dir="${build.dir}/WEB-INF/classes"
+                     includes="edu/xtec/gescurriculum/**/*.class"/>
         </copy>
 
         <jar jarfile="${dist.dir}/apiSemanticMerli.jar" basedir="${build.dir}/semanticnet" />
