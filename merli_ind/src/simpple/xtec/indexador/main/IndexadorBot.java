@@ -34,6 +34,25 @@ public class IndexadorBot {
     // Logger
     static final Logger logger = Logger.getLogger(simpple.xtec.indexador.main.IndexadorBot.class);
 
+    /** Lock on the processing loops */
+    private static final Object lock = new Object();
+
+    /** Set to true to stop the loops */
+    private static volatile boolean aborted = false;
+
+    /**
+     * Aborts all the loops when the VM is teminated
+     */
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                aborted = true;
+                lock.notifyAll();
+            }
+        });
+    }
+
+
     // Empty constructor
     public IndexadorBot() {
     }
@@ -238,7 +257,7 @@ public class IndexadorBot {
         }
 
     }
-    private static final Object lock = new Object();
+
 
     public static void iniciarProces(int periode) {
         String newCron = "";
@@ -246,8 +265,8 @@ public class IndexadorBot {
         boolean indexarAra = false;
         boolean final_ = false;
         int counter = 0;
-        try {
 
+        try {
             if (Configuracio.isVoid()) {
                 Configuracio.carregaConfiguracio();
             }
@@ -258,17 +277,9 @@ public class IndexadorBot {
             logger.debug("Cron string -> " + cronString);
 
             indexadorBot.doProcess(cronString);
-            // String semafor = "";
 
-//            synchronized (semafor) {
-            synchronized (lock) {
-                while (1 == 1) {
-                    logger.info("Sleeping...");
-                    // Thread.sleep(periode * 10000);
-                    /*Thread.currentThread();
-                     Thread.sleep(periode * 1000);*/
-                    Long time = (long) periode * 1000;
-                    lock.wait(time);
+            while (aborted == false) {
+                synchronized (lock) {
                     newCron = indexadorBot.getCurrentCron();
                     indexarAra = indexadorBot.indexacioInmediata();
                     logger.info("Testing.... ");
@@ -286,10 +297,13 @@ public class IndexadorBot {
                         logger.info("Indexar ara..");
                         indexadorBot.indexarAra();
                     }
+
+                    lock.wait(1000L * periode);
                 }
             }
         } catch (Exception e) {
             logger.error(e);
+        } finally {
             logger.debug("main -> out");
         }
     }
