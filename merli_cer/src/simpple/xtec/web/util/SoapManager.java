@@ -65,8 +65,7 @@ public class SoapManager {
 			logger.info("Descripcio: " + descripcio);			
 			linkRecurs = luceneDocument.get("url");
 			logger.info("linkRecurs: " + linkRecurs);			
-			linkFitxa = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
-			linkFitxa += "cerca/fitxaRecurs.jsp";
+			linkFitxa = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp");
 			linkFitxa += "?idRecurs=" + id;			
 			logger.info("linkFitxa: " + linkFitxa);			
 			mimeType = luceneDocument.get("lom@technical@format");

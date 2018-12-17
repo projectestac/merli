@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*, simpple.xtec.web.util.Configuracio, simpple.xtec.web.util.UtilsCercador, java.util.Locale, org.apache.log4j.Logger" %>
+<%@ page import="java.sql.*, simpple.xtec.web.util.Configuracio, simpple.xtec.web.util.UtilsCercador, java.util.Locale, org.apache.log4j.Logger" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <% 
@@ -16,7 +16,7 @@
 
   Logger logger = Logger.getLogger("indexacio.jsp");
 
-   String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;      
+   String urlLocal = Configuracio.getHostURL();      
    String contextWeb = Configuracio.contextWebAplicacio;
    String cssFile = urlLocal + "/" + contextWeb + "/css/admin_cerca.css";
 

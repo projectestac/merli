@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.NoticiaObject,simpple.xtec.web.util.RecursObject" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.NoticiaObject,simpple.xtec.web.util.RecursObject" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, java.util.Hashtable, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.DucObject, simpple.xtec.web.util.XMLCollection" %>
 <%@ page import="simpple.xtec.web.util.ResultGeneratorUtil"%>
 <%@ page pageEncoding="UTF-8" %>
@@ -54,7 +54,7 @@
     }
     comentarisSuspesos = myDirectori.getComentarisSuspesos(usuari);
 
-    String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;
+    String urlLocal = Configuracio.getHostURL();
     logger.debug("URL local: " + urlLocal);
     String contextWeb = Configuracio.contextWebAplicacio;
     String cssFile = urlLocal + "/" + contextWeb + "/css/merli.css";
@@ -275,8 +275,8 @@
                                 i = 0;
                                 while (i < allAreasLevel.size()) {
                                     DucObject ducObject = (DucObject) allAreasLevel.get(i);
-                                    if (!ducObject.term.startsWith("Compet�ncies")) {
-                                        String urlArea = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/ServletCerca?tipus=completa&nivell=0&ordenacio=&novaCerca=si&textCerca=&nivell_educatiu=" + idLevelInt + "&area_curricular=" + ducObject.id + "&cataleg=si";
+                                    if (!ducObject.term.startsWith("Competències")) {
+                                        String urlArea = Configuracio.getContextURL("/ServletCerca?tipus=completa&nivell=0&ordenacio=&novaCerca=si&textCerca=&nivell_educatiu=" + idLevelInt + "&area_curricular=" + ducObject.id + "&cataleg=si");
                             %>
                             <li><a href="<%=urlArea%>"><%=ducObject.getTerm(sLang)%></a></li>			
                                 <%
@@ -307,7 +307,7 @@
                             while (i < recursosMesBenValorats.size()) {
                                 RecursObject recursObject = (RecursObject) recursosMesBenValorats.get(i);
 
-                                String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
+                                String urlRecurs = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id);
                                 int puntuacio = recursObject.puntuacio;
                                 if (i == 0) {
                         %>
@@ -373,7 +373,7 @@
                                     String id = recursObject.id;
                                     int numVisites = recursObject.numVisites;
                                     String titol = recursObject.titol;
-                                    String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + id;
+                                    String urlRecurs = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp?idRecurs=" + id);
                                     String textVisites = "visites";
                                     if (numVisites == 1) {
                                         textVisites = "visita";
@@ -407,7 +407,7 @@
                                     while (i < recursosMesComentats.size()) {
                                         RecursObject recursObject = (RecursObject) recursosMesComentats.get(i);
 
-                                        String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
+                                        String urlRecurs = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id);
 
                                         if (i == 0) {
                                 %>

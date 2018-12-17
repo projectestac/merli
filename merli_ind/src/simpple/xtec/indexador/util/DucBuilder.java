@@ -414,7 +414,7 @@ public class DucBuilder {
             if (Configuracio.isVoid()) {
                 Configuracio.carregaConfiguracio();
             }
-            String serverURL = "http://" + Configuracio.servidorWSmerli + ":" + Configuracio.portWSmerli + "/";
+            String serverURL = Configuracio.getServiceURL("/");
             //String serverURL = "http://localhost:8888/";
             String servicePath = Configuracio.nameLomWS.replaceAll("/merli", "/duc");
             //String servicePath = "e13_merli_ws/duc";
@@ -493,14 +493,9 @@ public class DucBuilder {
             if (Configuracio.isVoid()) {
                 Configuracio.carregaConfiguracio();
             }
-            String serverURL = "http://" + Configuracio.servidorWSmerli;
-            if ("80".equals(Configuracio.portWSmerli)) {
-                serverURL += "/";
-            } else {
-                serverURL += ":" + Configuracio.portWSmerli + "/";
-            }
+            
+            String serverURL = Configuracio.getServiceURL("/");
 
-            //String serverURL = "http://" + Configuracio.servidorWSmerli + "/";
             logger.debug("serverURL: " + serverURL);
 
             String servicePath = Configuracio.nameLomWS.replaceAll("/merli", "/duc");

@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.NoticiaObject,simpple.xtec.web.util.RecursObject" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.NoticiaObject,simpple.xtec.web.util.RecursObject" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, java.util.Hashtable, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.DucObject, simpple.xtec.web.util.XMLCollection" %>
 <%@ page import="simpple.xtec.web.util.ResultGeneratorUtil"%>
 <%@ page import="java.util.Date, java.util.List, java.text.DateFormat, java.text.SimpleDateFormat" %>
@@ -66,7 +66,7 @@
         idioma = Configuracio.idioma;
     }
 
-    String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;
+    String urlLocal = Configuracio.getHostURL();
 
     String contextWeb = Configuracio.contextWebAplicacio;
     String cssFile = urlLocal + "/" + contextWeb + "/css/merli.css";
@@ -103,7 +103,7 @@
         <link rel="shortcut icon" href="<%=urlLocal%>/<%=Configuracio.contextWebAplicacio%>/imatges/merli.ico" />
         <link rel="stylesheet" href="<%=cssFilePrint%>" media="print" type="text/css" />
 
-        <link rel="alternate" type="application/rss+xml" title="Subscriu a aquesta p�gina" href="/<%=Configuracio.contextWebAplicacio%>/rss/noticies.rss" />
+        <link rel="alternate" type="application/rss+xml" title="Subscriu a aquesta pàgina" href="/<%=Configuracio.contextWebAplicacio%>/rss/noticies.rss" />
         <script type="text/javascript">
             <% int i = 0;
                 while (i < allLevels.size()) {
@@ -396,7 +396,7 @@
                                             String id = recursObject.id;
                                             int numVisites = recursObject.numVisites;
                                             String titol = recursObject.titol;
-                                            String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + id;
+                                            String urlRecurs = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp?idRecurs=" + id);
                                             String textVisites = "visites";
                                             if (numVisites == 1) {
                                                 textVisites = "visita";
@@ -434,7 +434,7 @@
                                             while (i < recursosMesComentats.size()) {
                                                 RecursObject recursObject = (RecursObject) recursosMesComentats.get(i);
 
-                                                String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
+                                                String urlRecurs = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id);
                                                 if (i == 0) {%>
                                         <div id="primera_fila">
                                             <%     } else { %>

@@ -28,13 +28,8 @@ public class SoapManager {
         if (Configuracio.isVoid()) {
             Configuracio.carregaConfiguracio();
         }
-        //serverURL = "http://aplitic.xtec.cat/e13_";
-        if("80".equals(Configuracio.portWSmerli)){
-            serverURL = "http://" + Configuracio.servidorWSmerli + "/";
-        }else{
-            serverURL = "http://" + Configuracio.servidorWSmerli + ":" + Configuracio.portWSmerli + "/";
-        }
         
+        serverURL = Configuracio.getServiceURL("/");
         servicePath = Configuracio.nameLomWS;
     }
 

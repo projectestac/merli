@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, simpple.xtec.web.util.XMLCollection,java.util.ArrayList, simpple.xtec.web.util.ComentariObject, simpple.xtec.web.util.Inicial" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -37,7 +37,7 @@
         conn = UtilsCercador.getConnectionFromPool();
         Inicial inicial = new Inicial(conn);
 
-        String baseScripts = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+        String baseScripts = Configuracio.getContextURL();
 %>   
 
 
@@ -114,7 +114,7 @@
                 String hora = UtilsCercador.getHora(dataEdicio);
                 String idRecurs = myComentari.idRecurs;
 
-                String fitxaUrl = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
+                String fitxaUrl = Configuracio.getContextURL("/");
                 fitxaUrl += "cerca/fitxaRecurs.jsp?idRecurs=" + idRecurs + "#" + id;
         %>         
         <tr>

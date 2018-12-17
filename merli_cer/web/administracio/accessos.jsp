@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.XMLCollection" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.XMLCollection" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, simpple.xtec.web.util.AccessLogObject" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -24,7 +24,7 @@
 
       
    
-   String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;      
+   String urlLocal = Configuracio.getContextURL();      
    
    String tipusResultat = (String)request.getAttribute("accessos.tipusResultat");   
    if (tipusResultat == null) {

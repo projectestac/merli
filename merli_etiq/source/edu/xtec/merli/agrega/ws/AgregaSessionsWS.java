@@ -206,23 +206,6 @@ public class AgregaSessionsWS extends AgregaWS{
 	}
 
 
-	public static URL getUrl(int context, int server){
-	  	URL url = null;
-		try{
-            switch (server){
-				case AgregaWS.LOCAL:url = new URL("http://agrega-int.educacio.intranet/dri-1/services/SrvSesionesService"); break;
-				case AgregaWS.TEST:	url = new URL("http://ccaa.agrega.indra.es/dri-1/services/SrvSesionesService"); break;
-				case AgregaWS.INTEGRACIO: url = new URL("agrega-int.educacio.intranet/dri-1/services/SrvSesionesService"); break;
-				case AgregaWS.ACCEPT:
-				case AgregaWS.PRODU:url = new URL("http://redes.agrega.indra.es/dri-1/services/SrvSesionesService"); break;
-				default: 	url = new URL("http://contenidos.proyectoagrega.es/dri-1/services/SrvSesionesService");			
-			}
-		}catch(Exception e){}
-		
-		return url;
-	}
-	
-
 	public String createSession(AgregaSession aSession, int servidor) {
 		SOAPElement se = null;
 		try{

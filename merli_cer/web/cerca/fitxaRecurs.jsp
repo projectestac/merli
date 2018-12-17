@@ -78,7 +78,7 @@
 
     comentarisSuspesos = fitxaRecurs.getComentarisSuspesos(usuari);
 
-    String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+    String urlLocal = Configuracio.getContextURL();
 
     String cssFilePrint = urlLocal + "/css/fitxaRecurs-print.css";
 
@@ -793,7 +793,7 @@
 
                     <div class="espaiFitxa">&nbsp;</div>
 
-                    <!-- Ã€mbit -->
+                    <!-- Àmbit -->
                     <%--if (luceneDocument.get("ambit") != null && !"".equals(luceneDocument.get("ambit"))){%>
                             <%
                             String ambit = luceneDocument.get("ambit");
@@ -1215,7 +1215,7 @@
                     int j = 0;
                     while (j < suggeriments.size()) {
                         RecursObject recursObject = (RecursObject) suggeriments.get(j);
-                        String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
+                        String urlRecurs = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id);
                 %>
                 <li>
                     <% if (recursObject.puntuacio <= 0) { %>

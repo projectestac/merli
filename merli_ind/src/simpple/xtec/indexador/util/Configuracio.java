@@ -21,6 +21,12 @@ import simpple.xtec.indexador.util.TipusFitxer;
  */
 public class Configuracio {
 
+    /** Scheme used to construct web URLs */
+    public static String protocolWeb = "https";
+
+    /** Scheme used to construct web service URLs */
+    public static String protocolWSmerli = "http";
+
     // logger
     static final Logger logger = Logger.getLogger(simpple.xtec.indexador.util.Configuracio.class);
 
@@ -43,7 +49,6 @@ public class Configuracio {
 
     public static String servidorWeb = "";
     public static String portWeb = "";
-//     public static String aplicacioCercador = "";    
 
     public static String parseUrl = "";
     public static String refreshDUC = "";
@@ -63,126 +68,7 @@ public class Configuracio {
         return false;
     }
 
-    /**
-     * Load the info from the configuration file
-     *
 
-    public static void carregaConfiguracio() {
-
-        RandomAccessFile propertiesFile = null;
-        String nameFile;
-        String line;
-
-        try {
-            logger.debug("[carregaConfiguracio] ");
-            //	javax.naming.Context ctx = new javax.naming.InitialContext();
-
-            nameFile = System.getProperty("indexacio.educacio");
-
-
-            logger.debug("[Buscant configuracio] " + nameFile);
-
-            propertiesFile = new RandomAccessFile(nameFile, "r");
-            logger.debug("propertiesFile " + propertiesFile);
-
-            if ((propertiesFile != null) && (propertiesFile.length() > 0)) {
-                while ((line = propertiesFile.readLine()) != null) {
-
-                    StringTokenizer myTokenizer = new StringTokenizer(line, "=");
-                    String name = myTokenizer.nextToken();
-                    String value = "";
-                    if (myTokenizer.hasMoreElements()) {
-                        value = myTokenizer.nextToken().trim();
-                    }
-                    if (name.equalsIgnoreCase("servidorWeb")) {
-                        servidorWeb = value;
-                        logger.debug("[Setting servidorWeb] " + value);
-                    }
-                    if (name.equalsIgnoreCase("portWeb")) {
-                        portWeb = value;
-                        logger.debug("[Setting portWeb] " + value);
-                    }
-                    if (name.equalsIgnoreCase("contextWebAplicacio")) {
-                        contextWebAplicacio = value;
-                        logger.debug("[Setting contextWebAplicacio] " + value);
-                    }
-                    if (name.equalsIgnoreCase("indexDir")) {
-                        indexDir = value;
-                        logger.debug("[Setting indexDir] " + value);
-                    }
-                    if (name.equalsIgnoreCase("indexDir2")) {
-                        indexDir2 = value;
-                        logger.debug("[Setting indexDir2] " + value);
-                    }
-                    if (name.equalsIgnoreCase("userBDOracle")) {
-                        userBDOracle = value;
-                        logger.debug("[Setting userBDOracle] " + value);
-                    }
-                    if (name.equalsIgnoreCase("passwordBDOracle")) {
-                        passwordBDOracle = value;
-                        logger.debug("[Setting passwordBDOracle] " + value);
-                    }
-                    if (name.equalsIgnoreCase("nomDriverBDOracle")) {
-                        nomDriverBDOracle = value;
-                        logger.debug("[Setting nomDriverBDOracle] " + value);
-                    }
-                    if (name.equalsIgnoreCase("cadenaConnexioBDOracle")) {
-                        cadenaConnexioBDOracle = value;
-                        logger.debug("[Setting cadenaConnexioBDOracle] " + value);
-                    }
-                    if (name.equalsIgnoreCase("servidorWSmerli")) {
-                        servidorWSmerli = value;
-                        logger.debug("[Setting servidorWSmerli] " + value);
-                    }
-                    if (name.equalsIgnoreCase("portWSmerli")) {
-                        portWSmerli = value;
-                        logger.debug("[Setting portWSmerli] " + value);
-                    }
-                    if (name.equalsIgnoreCase("nameHarvestingWS")) {
-                        nameHarvestingWS = value;
-                        logger.debug("[Setting nameHarvestingWS] " + value);
-                    }
-                    if (name.equalsIgnoreCase("nameLomWS")) {
-                        nameLomWS = value;
-                        logger.debug("[Setting nameLomWS] " + value);
-                    }
-                    if (name.equalsIgnoreCase("servidorOrganitzador")) {
-                        servidorOrganitzador = value;
-                        logger.debug("[Setting servidorOrganitzador] " + value);
-                    }
-                    if (name.equalsIgnoreCase("nameRecomanacionsWS")) {
-                        nameRecomanacionsWS = value;
-                        logger.debug("[Setting nameRecomanacionsWS] " + value);
-                    }
-                    if (name.equalsIgnoreCase("parseUrl")) {
-                        parseUrl = value;
-                        logger.debug("[Setting parseUrl] " + value);
-                    }
-                    if (name.equalsIgnoreCase("refreshDUC")) {
-                        refreshDUC = value;
-                        logger.debug("[Setting refreshDUC] " + value);
-                    }
-
-                }
-                if (TipusFitxer.isVoid()) {
-//        	 Class.forName(nomDriverBDOracle);
-                    TipusFitxer.carregaTipusFitxer();
-                }
-            } else {
-                carregaConfiguracioBD();
-            }
-        } catch (Exception e) {
-            logger.error(e);
-            carregaConfiguracioBD();
-        } finally {
-            try {
-                propertiesFile.close();
-            } catch (Exception e) {
-            }
-        }
-
-    }
-        */
     public static void carregaConfiguracio() {
 
         Connection myConnection = null;
@@ -200,6 +86,10 @@ public class Configuracio {
                 String name = rs.getString("clau");
                 String value = rs.getString("valor");
 
+                if (name.equalsIgnoreCase("protocolWeb")){
+                    protocolWeb = value;
+                    logger.debug("[Setting protocolWeb] " + value);
+                }
                 if (name.equalsIgnoreCase("servidorWeb")) {
                     servidorWeb = value;
                     logger.debug("[Setting servidorWeb] " + value);
@@ -235,6 +125,10 @@ public class Configuracio {
                 if (name.equalsIgnoreCase("cadenaConnexioBDOracle")) {
                     cadenaConnexioBDOracle = value;
                     logger.debug("[Setting cadenaConnexioBDOracle] " + value);
+                }
+                if (name.equalsIgnoreCase("protocolWSmerli")){
+                    protocolWSmerli = value;
+                    logger.debug("[Setting protocolWSmerli] " + value);
                 }
                 if (name.equalsIgnoreCase("servidorWSmerli")) {
                     servidorWSmerli = value;
@@ -295,6 +189,117 @@ public class Configuracio {
                 logger.error(e);
             }
         }
+    }
+    
+    
+    /**
+     * Builds an absolute URL string for the current server configuration.
+     *
+     * The scheme, host and port are appended automatically to the
+     * provided path parameter. If the path does not start with a / symbol,
+     * it will be prefixed with it.
+     *
+     * Note: This is a work-around to build absolute URLs for the current.
+     * code base, please, do not use this method on new code, use relative
+     * URLs and see {@link java.net.URI}
+     *
+     * @param path    URL path string
+     * @return        String representation
+     */
+    public static String getHostURL(String path) {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append(protocolWeb);
+        sb.append("://");
+        sb.append(servidorWeb);
+
+        if (portWeb != null && !portWeb.isEmpty()) {
+            sb.append(':').append(portWeb);
+        }
+
+        sb.append(normalizePath(path));
+
+        return sb.toString();
+    }
+
+
+    /**
+     * Returns an absoulte URL for the current web application context.
+     *
+     * @param path    URL path string
+     * @return        String representation
+     */
+    public static String getContextURL(String path) {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append(contextWebAplicacio);
+        sb.append(normalizePath(path));
+
+        return getHostURL(sb.toString());
+    }
+
+
+    /**
+     * Returns an absoulte URL for the current web service.
+     *
+     * @param path    URL path string
+     * @return        String representation
+     */
+    public static String getServiceURL(String path) {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append(protocolWSmerli);
+        sb.append("://");
+        sb.append(servidorWSmerli);
+        
+        if (portWSmerli != null && !portWSmerli.isEmpty()) {
+            sb.append(':').append(portWSmerli);
+        }
+
+        sb.append(normalizePath(path));
+
+        return sb.toString();
+    }
+
+
+    /**
+     * Convenience method to return an absolute URL string for a
+     * {@code null} URL path.
+     *
+     * @return        String representation
+     */
+    public static String getHostURL() {
+        return getHostURL(null);
+    }
+
+
+    /**
+     * Convenience method to return an absolute URL string for a
+     * {@code null} URL path.
+     *
+     * @return        String representation
+     */
+    public static String getContextURL() {
+        return getContextURL(null);
+    }
+
+
+    /**
+     * Normalizes an URL path by prefixing it with a slash.
+     *
+     * @param path    URL path
+     * @return        Normalized path
+     */
+    private static String normalizePath(String path) {
+        StringBuffer sb = new StringBuffer();
+
+        if (path != null && !path.isEmpty()) {
+            if (path.charAt(0) != '/')
+                sb.append('/');
+            sb.append(path);
+        }
+
+        return sb.toString();
     }
 
 }

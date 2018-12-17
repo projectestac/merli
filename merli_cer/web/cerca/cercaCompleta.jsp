@@ -71,7 +71,7 @@
             logger.debug("Cached!");
         }
 
-        String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+        String urlLocal = Configuracio.getContextURL();
         logger.debug("Url local: " + urlLocal);
 
         String sheetId = request.getParameter("sheetId");
@@ -275,7 +275,7 @@
                 //alert(area_curricular);
                 var nivell = document.cerca.cicle.options[document.cerca.cicle.selectedIndex].value;
                 //alert(nivell);       
-                if (nivell == -1 || area_curricular_text.indexOf('Compet�ncies') >= 0) {
+                if (nivell == -1 || area_curricular_text.indexOf('Competències') >= 0) {
                     nivell = document.cerca.nivell_educatiu.options[document.cerca.nivell_educatiu.selectedIndex].value;
                 }
                 //alert("nivell="+nivell+"  area="+area_curricular);                 

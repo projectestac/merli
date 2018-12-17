@@ -1,4 +1,4 @@
-﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.ComentariObject,simpple.xtec.web.util.RecursObject" %>
+<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.ComentariObject,simpple.xtec.web.util.RecursObject" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, java.util.Hashtable, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.DucObject, simpple.xtec.web.util.XMLCollection" %>
 <%@ page import="simpple.xtec.web.util.ResultGeneratorUtil"%>
 <%@ page pageEncoding="UTF-8" %>
@@ -48,7 +48,7 @@
 
         Connection myConnection = UtilsCercador.getConnectionFromPool();
 
-        String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;
+        String urlLocal = Configuracio.getHostURL();
         String contextWeb = Configuracio.contextWebAplicacio;
         String cssFile = urlLocal + "/" + contextWeb + "/css/merli.css";
         String cssFilePrint = urlLocal + "/" + contextWeb + "/css/merli-print.css";
@@ -183,7 +183,7 @@
 
                         String dia = UtilsCercador.getDia(dataEdicio);
                         String hora = UtilsCercador.getHora(dataEdicio);
-                        String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + myComentari.idRecurs;
+                        String urlRecurs = Configuracio.getContextURL("/cerca/fitxaRecurs.jsp?idRecurs=" + myComentari.idRecurs);
                         if ((i % 2) == 0) {
                 %>           
                 <div id="comentari_senar2">

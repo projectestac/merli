@@ -20,16 +20,13 @@ import org.apache.log4j.Logger;
 
 public class Configuracio {
 
+    /** Scheme used to construct the URLs */
+    public static String protocolWeb = "https";
+
 	// logger
 	static final Logger logger = Logger.getLogger(simpple.xtec.web.util.Configuracio.class);
 
 	// config parameters
-
-/*    public static String cadenaConnexioBDOracle = "";
-    public static String userBDOracle = "";
-    public static String passwordBDOracle = "";
-    public static String nomDriverBDOracle = "";*/
-
 
 	public static String servidorWeb = "";
 	public static String portWeb = "";
@@ -99,6 +96,10 @@ public class Configuracio {
 					String value = "";
 					if (myTokenizer.hasMoreElements()){
 						value = myTokenizer.nextToken().trim();
+					}
+					if (name.equalsIgnoreCase("protocolWeb")){
+						protocolWeb = value;
+						logger.debug("[Setting protocolWeb] " + value);
 					}
 					if (name.equalsIgnoreCase("servidorWeb")){
 						servidorWeb = value;
@@ -200,6 +201,10 @@ public class Configuracio {
 				String name = rs.getString("clau");
 				String value = rs.getString("valor");
 
+				if (name.equalsIgnoreCase("protocolWeb")){
+					protocolWeb = value;
+					logger.debug("[Setting protocolWeb] " + value);
+				}
 				if (name.equalsIgnoreCase("servidorWeb")){
 					servidorWeb = value;
 					logger.debug("[Setting servidorWeb] " + value);
@@ -279,4 +284,93 @@ public class Configuracio {
 			}
 		}
 	}
+
+
+	/**
+	 * Builds an absolute URL string for the current server configuration.
+	 *
+	 * The scheme, host and port are appended automatically to the
+	 * provided path parameter. If the path does not start with a / symbol,
+	 * it will be prefixed with it.
+	 *
+	 * Note: This is a work-around to build absolute URLs for the current.
+	 * code base, please, do not use this method on new code, use relative
+	 * URLs and see {@link java.net.URI}
+	 *
+	 * @param path    URL path string
+	 * @return        String representation
+	 */
+	public static String getHostURL(String path) {
+	    StringBuffer sb = new StringBuffer();
+
+	    sb.append(protocolWeb);
+	    sb.append("://");
+	    sb.append(servidorWeb);
+
+	    if (portWeb != null && !portWeb.isEmpty()) {
+	        sb.append(':').append(portWeb);
+	    }
+
+	    sb.append(normalizePath(path));
+
+	    return sb.toString();
+	}
+
+
+	/**
+	 * Returns an absoulte URL for the current web application context.
+	 *
+	 * @param path    URL path string
+	 * @return        String representation
+	 */
+	public static String getContextURL(String path) {
+	    StringBuffer sb = new StringBuffer();
+
+	    sb.append(contextWebAplicacio);
+	    sb.append(normalizePath(path));
+
+	    return getHostURL(sb.toString());
+	}
+
+
+    /**
+     * Convenience method to return an absolute URL string for a
+     * {@code null} URL path.
+     *
+     * @return        String representation
+     */
+	public static String getHostURL() {
+        return getHostURL(null);
+    }
+
+
+    /**
+     * Convenience method to return an absolute URL string for a
+     * {@code null} URL path.
+     *
+     * @return        String representation
+     */
+	public static String getContextURL() {
+        return getContextURL(null);
+    }
+
+
+	/**
+	 * Normalizes an URL path by prefixing it with a slash.
+	 *
+	 * @param path    URL path
+	 * @return        Normalized path
+	 */
+	private static String normalizePath(String path) {
+	    StringBuffer sb = new StringBuffer();
+
+	    if (path != null && !path.isEmpty()) {
+	        if (path.charAt(0) != '/')
+	            sb.append('/');
+	        sb.append(path);
+	    }
+
+	    return sb.toString();
+	}
+
 }

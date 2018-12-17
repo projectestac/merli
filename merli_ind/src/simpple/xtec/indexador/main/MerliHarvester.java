@@ -62,23 +62,11 @@ public class MerliHarvester implements Job {
             if (Configuracio.isVoid()) {
                 Configuracio.carregaConfiguracio();
             }
-            //NADIM
 
-            if ("80".equals(Configuracio.portWSmerli)) {
-                urlServletHarvesting = "http://" + Configuracio.servidorWSmerli + "/" + Configuracio.nameHarvestingWS;
-            } else {
-                urlServletHarvesting = "http://" + Configuracio.servidorWSmerli + ":" + Configuracio.portWSmerli + "/" + Configuracio.nameHarvestingWS;
-            }
-
-            //urlServletHarvesting = "http://aplitic.xtec.cat/e13_merli_harvesting/MerliHarvestingServlet";
-            //urlServletHarvesting ="http://10.49.24.34:7005/merli_harvesting/MerliHarvestingServlet";
+            urlServletHarvesting = Configuracio.getServiceURL(Configuracio.nameHarvestingWS);
+            urlServletCercador = Configuracio.getContextURL("/ServletCerca");
+            
             logger.debug("urlServletHarvesting -> " + urlServletHarvesting);
-            if ("80".equals(Configuracio.portWSmerli)) {
-                urlServletCercador = "http://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio + "/ServletCerca";
-            } else {
-                urlServletCercador = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/ServletCerca";
-            }
-
             logger.debug("urlServletCercador -> " + urlServletCercador);
             logger.debug("MerliHarvester -> out");
         } catch (Exception e) {
@@ -203,7 +191,7 @@ public class MerliHarvester implements Job {
         String xmlRetorn = "";
         try {
             logger.debug("getContentBySOAP -> in");
-            String serverURL = "http://" + Configuracio.servidorWSmerli + ":" + Configuracio.portWSmerli + "/";
+            String serverURL = Configuracio.getServiceURL("/");
             logger.debug("serverURL -> " + serverURL);
             String servicePath = Configuracio.nameLomWS;
             logger.debug("servicePath -> " + servicePath);
