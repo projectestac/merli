@@ -1,6 +1,7 @@
 ﻿<%@ page import="java.sql.*,simpple.xtec.web.util.Configuracio,simpple.xtec.web.util.UtilsCercador,simpple.xtec.web.util.Directori,simpple.xtec.web.util.NoticiaObject,simpple.xtec.web.util.RecursObject" %>
 <%@ page import="org.apache.log4j.Logger, java.util.Locale, java.util.ArrayList, java.util.Hashtable, simpple.xtec.web.util.UtilsCercador, simpple.xtec.web.util.DucObject, simpple.xtec.web.util.XMLCollection" %>
 <%@ page import="simpple.xtec.web.util.ResultGeneratorUtil"%>
+<%@ page import="java.util.Date, java.util.List, java.text.DateFormat, java.text.SimpleDateFormat" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -345,79 +346,41 @@
 
                         <!-- right {{{-->
                         <div id="right">
+                          <div id="taula">
 
-                            <%
-                                logger.debug("Getting recursosMesBenValorats");
-                                ArrayList recursosMesBenValorats = myDirectori.getRecursosMesBenValorats(-1);
-                                if (recursosMesBenValorats.size() > 0) {
-                            %>    	 
-                            <div id="taula">
-                                <h1><%=XMLCollection.getProperty("cerca.directoriInicial.recursosValorats", sLang)%></h1>
-                                <%     }
-                                    i = 0;
-                                    logger.debug("Size: " + recursosMesBenValorats.size());
-                                    while (i < recursosMesBenValorats.size()) {
-                                        RecursObject recursObject = (RecursObject) recursosMesBenValorats.get(i);
+  <%
 
-                                        String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
-                                        int puntuacio = recursObject.puntuacio;
+  /* -- Most recently indexed resources list ------------------------------- */
 
-                                        if (i == 0) {
-                                %>
-                                <div id="primera_fila_table">
-                                    <%     } else {
-                                    %>
-                                    <div id="fila_table">
-                                        <%
-                                            }
-                                        %>
+  List<RecursObject> items = myDirectori.findNewResources();
 
-                                        <table summary="">
-                                            <caption/>
-                                            <tr>
-                                                <td class="fila_left_wai">
-                                                    <!-- <td align="left" width="78%"> -->
-                                                    <a href="<%=urlRecurs%>"><%=recursObject.titol%></a>
-                                                </td>
-                                                <!-- <td align="right" width="22%">
-                                                -->
-                                                <td class="fila_right_wai">
+  if (items.isEmpty() == false) {
+      String key = "cerca.directoriInicial.recursosNous";
+      String title = XMLCollection.getProperty(key, sLang);
 
-                                                    <% if (puntuacio <= 0) {%>
-                                                    <img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/>
-                                                    <% } %>
-                                                    <% if (puntuacio == 1) {%>
-                                                    <img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/>
-                                                    <% } %>
-                                                    <% if (puntuacio == 2) {%>
-                                                    <img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/>
-                                                    <% } %>
-                                                    <% if (puntuacio == 3) {%>
-                                                    <img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/>
-                                                    <% } %>
-                                                    <% if (puntuacio == 4) {%>
-                                                    <img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-empty.gif" alt=""/>
-                                                    <% } %>
-                                                    <% if (puntuacio == 5) {%>
-                                                    <img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/><img src="<%=urlLocal%>/<%=contextWeb%>/imatges/stars-full.gif" alt=""/>
-                                                    <% } %>				
-                                                </td> 
+      Locale locale = Locale.forLanguageTag(sLang);
+      DateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd");
+      DateFormat outFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
 
-                                            </tr>
-                                        </table>
-
-                                        <!-- <div class="clear"></div> -->
-                                    </div>
-
-                                    <%     i++;
-                                        }
-                                        if (recursosMesBenValorats.size() > 0) {
-                                    %>    	 
-                                </div>
-
-                                <%   }
-
-                                %>
+  %>
+    <div class="new-resources">
+      <h1><%= title %></h1>
+      <ul>
+        <% for (RecursObject item : items) { %>
+          <li>
+            <a href="./fitxaRecurs.jsp?idRecurs=<%= item.id %>">
+              <%= item.titol %>
+            </a>
+            <% try { Date date = inFormat.parse(item.indexedAt); %>
+              <time datetime="<%= item.indexedAt %>">
+                <%= outFormat.format(date) %>
+              </time>
+            <% } catch (Exception e) {} %>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  <% } %>
 
                                 <%    logger.debug("Getting recursosMesVisitats");
                                     ArrayList recursosMesVisitats = myDirectori.getRecursosMesVisitats(-1);
