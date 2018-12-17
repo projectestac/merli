@@ -24,7 +24,7 @@ public class Responder extends Action
 				HttpServletResponse response)
 				throws Exception{
 //Amendez 23/03/2016 https://trello.com/c/bTyrT3wj
-			response.setContentType("text/xml; charset= ISO_8859_15");
+			response.setContentType("text/xml; charset=iso-8859-15");
 			response.setHeader("Cache-Control", "no-cache");
 			SemanticInterface si = new SemanticInterface();
 			int valor = ((ResponderForm)form).getId();
