@@ -132,12 +132,12 @@ public class ServletMerli extends ServletMain {
 
             //AddResource
             if (ADDRESOURCE.equals(sQuery)) {
-                smResponse = addResource(getChildByLocalName(sbeRequest, "lom"), ip);
+                smResponse = addResource(getChildByLocalNameGetResource(sbeRequest, "lom"), ip);
             }
 
             //SetResource
             if (SETRESOURCE.equals(sQuery)) {
-                smResponse = setResource(getChildByLocalName(sbeRequest, "lom"), ip);
+                smResponse = setResource(getChildByLocalNameGetResource(sbeRequest, "lom"), ip);
             }
 
             //DelResource

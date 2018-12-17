@@ -469,8 +469,8 @@ public class MerliHarvester implements Job {
         Recomanacions recomanacions = null;
         boolean processOk = false;
         try {
-            clientWS = Utils.createHttpClient(30000);
-            client = Utils.createHttpClient(5000);
+            clientWS = Utils.createHttpClient(900 * 1000);
+            client = Utils.createHttpClient(900 * 1000);
             //    merliHarvester = new MerliHarvester();
             merliHarvester.clearFoundLogIndexacio();
 //THIS WILL TRY TO SEARCH IN MERLI_ALOMA or MERLI_ORG (both are same)            
