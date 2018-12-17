@@ -49,7 +49,9 @@
     <javac destdir="${build.dir}" 
            debug="${debug}" 
            deprecation="${deprecation}"
-           optimize="${optimize}" excludes="**/test/**" >
+           optimize="${optimize}"
+           excludes="**/test/**"
+           includeantruntime="false">
       <src path="${src.dir}"/>
       <classpath>
       	<pathelement location="${lib.dir}/jdom.jar"/>

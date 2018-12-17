@@ -42,6 +42,10 @@
         <property name="server.name" value="INT" />
     </target>
 
+    <target name="vm_init">
+        <property name="server.name" value="VM" />
+    </target>
+
     <!-- =================================================================== -->
     <!-- MAIN                                                                -->
     <!-- =================================================================== -->
@@ -55,6 +59,10 @@
 
     <target name="int" depends="int_init,deploy" description="Build development">
         <echo message="***INDEXADOR creat correctament! integration!"/>
+    </target>
+
+    <target name="vm" depends="vm_init,deploy" description="Build development">
+        <echo message="***INDEXADOR creat correctament!"/>
     </target>
 
     <target name="all" depends="pro, deploy" description="Build everything">
@@ -91,10 +99,12 @@
                 <pathelement location="${lib.dir}/axis.jar"/>
                 <pathelement location="${lib.dir}/commons-codec-1.3.jar"/>
                 <pathelement location="${lib.dir}/commons-collections.jar"/>
+                <pathelement location="${lib.dir}/commons-dbcp-1.3.jar"/>
                 <pathelement location="${lib.dir}/commons-discovery-0.2.jar"/>
                 <pathelement location="${lib.dir}/commons-httpclient-3.0.1.jar"/>
                 <pathelement location="${lib.dir}/commons-io-1.2.jar"/>
                 <pathelement location="${lib.dir}/commons-logging-1.1.jar"/>
+                <pathelement location="${lib.dir}/commons-pool-1.5.4.jar"/>
                 <pathelement location="${lib.dir}/jakarta-httpcore-4.0-alpha2.jar"/>
                 <pathelement location="${lib.dir}/jaxen-1.1-beta-10.jar"/>
                 <pathelement location="${lib.dir}/jaxm-api.jar"/>
@@ -112,10 +122,12 @@
                 <pathelement location="${lib.dir}/poi-3.0-alpha1-20050704.jar"/>
                 <pathelement location="${lib.dir}/poi-contrib-3.0-alpha1-20050704.jar"/>
                 <pathelement location="${lib.dir}/poi-scratchpad-3.0-alpha1-20050704.jar"/>
-                <pathelement location="${lib.dir}/quartz-1.8.0.jar"/>
+                <pathelement location="${lib.dir}/quartz-1.8.6.jar"/>
                 <pathelement location="${lib.dir}/saaj-impl.jar"/>
                 <pathelement location="${lib.dir}/saaj.jar"/>
                 <pathelement location="${lib.dir}/servlet.jar"/>
+                <pathelement location="${lib.dir}/slf4j-api-1.6.0.jar"/>
+                <pathelement location="${lib.dir}/slf4j-log4j12-1.6.0.jar"/>
                 <pathelement location="${lib.dir}/soap.jar"/>
                 <pathelement location="${lib.dir}/taglibs-i18n.jar"/>
                 <pathelement location="${lib.dir}/tm-extractors-0.4.jar"/>
@@ -158,10 +170,12 @@
                 <include name="axis.jar"/>
                 <include name="commons-codec-1.3.jar"/>
                 <include name="commons-collections.jar"/>
+                <include name="commons-dbcp-1.3.jar"/>
                 <include name="commons-discovery-0.2.jar"/>
                 <include name="commons-httpclient-3.0.1.jar"/>
                 <include name="commons-io-1.2.jar"/>
                 <include name="commons-logging-1.1.jar"/>
+                <include name="commons-pool-1.5.4.jar"/>
                 <include name="jakarta-httpcore-4.0-alpha2.jar"/>
                 <include name="jaxen-1.1-beta-10.jar"/>
                 <include name="jaxm-api.jar"/>
@@ -179,10 +193,12 @@
                 <include name="poi-3.0-alpha1-20050704.jar"/>
                 <include name="poi-contrib-3.0-alpha1-20050704.jar"/>
                 <include name="poi-scratchpad-3.0-alpha1-20050704.jar"/>
-                <include name="quartz-1.8.0.jar"/>
+                <include name="quartz-1.8.6.jar"/>
                 <include name="saaj-impl.jar"/>
                 <include name="saaj.jar"/>
                 <include name="servlet.jar"/>
+                <include name="slf4j-api-1.6.0.jar"/>
+                <include name="slf4j-log4j12-1.6.0.jar"/>
                 <include name="soap.jar"/>
                 <include name="taglibs-i18n.jar"/>
                 <include name="tm-extractors-0.4.jar"/>

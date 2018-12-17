@@ -50,7 +50,9 @@
     <javac destdir="${build.dir}"
            debug="${debug}"
            deprecation="${deprecation}"
-           optimize="${optimize}">
+           encoding="iso-8859-1"
+           optimize="${optimize}"
+           includeantruntime="false">
         <src path="${src.dir}"/>
         <classpath>
             <pathelement location="${lib.dir}/soap.jar"/>

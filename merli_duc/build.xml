@@ -45,6 +45,11 @@
   <target name="int_init">
       <property name="server.name" value="INT" />
   </target>
+
+  <target name="vm_init">
+      <property name="server.name" value="VM" />
+  </target>
+
   <!-- =================================================================== -->
     <!-- MAIN                                                                -->
     <!-- =================================================================== -->
@@ -59,6 +64,10 @@
 
     <target name="int" depends="int_init,deploy" description="Build development">
         <echo message="***DUC creat correctament! integration!"/>
+    </target>
+
+    <target name="vm" depends="vm_init,deploy" description="Build development">
+        <echo message="***DUC creat correctament!"/>
     </target>
 
     <target name="all" depends="pro, deploy" description="Build everything">
@@ -217,11 +226,13 @@
         <mkdir dir="${build.dir}/semanticnet"/>
 
         <copy todir="${build.dir}/semanticnet">
-            <fileset dir="${build.dir}/WEB-INF/classes" includes="edu/xtec/merli/semanticnet/**/*.class"/>
+            <fileset dir="${build.dir}/WEB-INF/classes"
+                     includes="edu/xtec/merli/semanticnet/**/*.class"/>
+            <fileset dir="${build.dir}/WEB-INF/classes"
+                     includes="edu/xtec/gescurriculum/**/*.class"/>
         </copy>
 
         <jar jarfile="${dist.dir}/apiSemanticMerli.jar" basedir="${build.dir}/semanticnet" />
         <copy file="${dist.dir}/apiSemanticMerli.jar" tofile="../merli_ws2/web/WEB-INF/lib/apiSemanticMerli.jar"/>
     </target>
 </project>
-

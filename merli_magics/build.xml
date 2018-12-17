@@ -15,7 +15,7 @@
         <property name="ant.build.javac.source" value="1.7"/>
         <property name="ant.build.javac.target" value="1.7"/>
         <property name="ant.build.javac.encoding" value="ISO-8859-15"/>
-	
+
     <!-- Patterns -->
 	<patternset id="jsps" >
 		<include name="*.jsp"/>
@@ -39,6 +39,10 @@
     <target name="int_init">
         <property name="server.name" value="INT" />
     </target>
+
+    <target name="vm_init">
+        <property name="server.name" value="VM" />
+    </target>
   <!-- =================================================================== -->
   <!-- MAIN                                                                -->
   <!-- =================================================================== -->
@@ -52,6 +56,10 @@
 
       <target name="int" depends="int_init,deploy" description="Build development">
           <echo message="***Magics creat correctament! integration!"/>
+      </target>
+
+      <target name="vm" depends="vm_init,deploy" description="Build development">
+          <echo message="***Magics creat correctament!"/>
       </target>
 
       <target name="all" depends="pro, deploy" description="Build everything">
@@ -74,13 +82,14 @@
   <!-- =================================================================== -->
   <target name="compile" depends="clean, init">
     <mkdir dir="${build.dir}/WEB-INF/classes"/>
-    <javac destdir="${build.dir}/WEB-INF/classes" 
-           debug="${debug}" 
+    <javac destdir="${build.dir}/WEB-INF/classes"
+           debug="${debug}"
            deprecation="${deprecation}"
-           optimize="${optimize}" 
+           optimize="${optimize}"
  	       encoding="${ant.build.javac.encoding}"
  	       source="${ant.build.javac.source}"
-           target="${ant.build.javac.target}">
+           target="${ant.build.javac.target}"
+           includeantruntime="false">
       <src path="${src.dir}"/>
       <classpath>
         <pathelement location="${lib.dir}/servlet.jar"/>
@@ -114,7 +123,7 @@
 	 <target name="build" depends="compile">
 	    <copy todir="${build.dir}/WEB-INF/">
 	      <fileset dir="${web.dir}/WEB-INF/" includes="*" excludesfile="${web.dir}/WEB-INF/web.xml"/>
-	    </copy>       
+	    </copy>
 	  	<copy todir="${build.dir}/">
 	  	      <fileset dir="${web.dir}" excludes="WEB-INF/** web-inf/**"/>
 	  	</copy>
@@ -122,14 +131,14 @@
 	  	      <fileset dir="${src.dir}" includes="**/*.properties"/>
 	  	</copy>
 	  </target>
-	
-   <target name="dist" 
+
+   <target name="dist"
           depends="build">
-    <war destfile="${dist.dir}/merli_magics.war" 
+    <war destfile="${dist.dir}/merli_magics.war"
          webxml="${web.dir}/WEB-INF/web.xml">
-    	
+
          <manifest>
-           <attribute name="Built-By" 
+           <attribute name="Built-By"
                       value="${user.name}"/>
         </manifest>
         <lib dir="${lib.dir}">
@@ -147,9 +156,9 @@
             <include name="standard.jar"/>
             <include name="struts.jar"/>
             <include name="struts-el.jar"/>
-            <include name="xerces.jar"/>						
+            <include name="xerces.jar"/>
 		</lib>
-    	
+
 		<zipfileset dir="${build.dir}" prefix="" excludes="web-inf/** WEB-INF/** web/js/** web/JS/**">
 		</zipfileset>
 		<zipfileset dir="${build.dir}/WEB-INF" prefix="WEB-INF">
@@ -162,13 +171,13 @@
         </zipfileset>
     </war>
   </target>
-  
+
   <target name="deploy" depends="dist">
       <mkdir dir="${dist.dir}/${server.name}"/>
     <ear destfile="${dist.dir}/${server.name}/merli_magics.ear"
          appxml="${web.dir}/WEB-INF/application.xml">
          <manifest>
-           <attribute name="Built-By" 
+           <attribute name="Built-By"
                       value="${user.name}"/>
          </manifest>
       <fileset dir="${dist.dir}" includes="merli_magics.war"/>
@@ -176,6 +185,5 @@
    	<delete dir="${build.dir}"/>
    	<delete file="${dist.dir}/merli_magics.war"/>
   </target>
-		
-</project>
 
+</project>

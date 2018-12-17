@@ -18,8 +18,8 @@
         <property name="ant.build.javac.source" value="1.7"/>
         <property name="ant.build.javac.target" value="1.7"/>
         <property name="ant.build.javac.encoding" value="ISO-8859-15"/>
-	
-    
+
+
     <!-- Patterns -->
 	<patternset id="jsps" >
 		<include name="*.jsp"/>
@@ -27,7 +27,7 @@
 		<include name="*.png"/>
 		<include name="*.js"/>
 	</patternset>
-    
+
     <patternset id="logs" >
       <include name="**/*.log"/>
       <include name="**/*.txt"/>
@@ -48,6 +48,10 @@
         <property name="server.name" value="INT" />
     </target>
 
+    <target name="vm_init">
+        <property name="server.name" value="VM" />
+    </target>
+
 
     <!-- =================================================================== -->
   <!-- MAIN                                                                -->
@@ -62,6 +66,10 @@
 
     <target name="int" depends="int_init,deploy" description="Build development">
         <echo message="***Merli WS creat correctament! integration!"/>
+    </target>
+
+    <target name="vm" depends="vm_init,deploy" description="Build development">
+        <echo message="***Merli WS creat correctament!"/>
     </target>
 
     <target name="all" depends="pro, deploy" description="Build everything">
@@ -82,11 +90,11 @@
   <!-- =================================================================== -->
   <target name="compile" depends="init">
     <mkdir dir="${build.dir}/WEB-INF/classes"/>
-    <javac destdir="${build.dir}/WEB-INF/classes" 
+    <javac destdir="${build.dir}/WEB-INF/classes"
     	   excludes="edu/xtec/merli/ws/test/**"
-           debug="${debug}" 
+           debug="${debug}"
            deprecation="${deprecation}"
-           optimize="${optimize}" 
+           optimize="${optimize}"
 		   encoding="${ant.build.javac.encoding}"
 		   source="${ant.build.javac.source}"
     	   target="${ant.build.javac.target}"
@@ -123,8 +131,8 @@
   <!-- BUILD                                                                -->
   <!-- =================================================================== -->
 	 <target name="build" depends="compile">
-	  </target>	
-	
+	  </target>
+
    <target name="dist" depends="build">
    <copy todir="${build.dir}">
         <fileset dir="web" includes= "semanticNetv3.xsd" />
@@ -200,6 +208,5 @@
       <copy file="${dist.dir}/merliWS2.jar" tofile="../merli_harvesting/web/WEB-INF/lib/merliWS2.jar"/>
     <delete dir="${build.dir}"/>
   </target>
-	
-</project>
 
+</project>
