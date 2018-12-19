@@ -4,6 +4,7 @@
 <property name="lib.dir"        location="lib" />
 <property name="build.dir"      location="build" />
 <property name="dist.dir"       location="dist" />
+<property name="target"         value="1.7"/>
 
 <!-- Patterns -->
 <patternset id="props" >
@@ -52,7 +53,8 @@
            deprecation="${deprecation}"
            encoding="iso-8859-1"
            optimize="${optimize}"
-           includeantruntime="false">
+           includeantruntime="false"
+           target="${target}">
         <src path="${src.dir}"/>
         <classpath>
             <pathelement location="${lib.dir}/soap.jar"/>

@@ -4,12 +4,13 @@
   <property name="lib.dir"        location="lib" />
   <property name="build.dir"      location="build" />
   <property name="dist.dir"       location="dist" />
-    
+  <property name="target"         value="1.7"/>
+
     <!-- Patterns -->
     <patternset id="props" >
       <include name="**/*.properties"/>
     </patternset>
-    
+
   <!-- =================================================================== -->
   <!-- MAIN                                                                -->
   <!-- =================================================================== -->
@@ -20,14 +21,14 @@
   <!-- =================================================================== -->
   <!-- INIT                                                                -->
   <!-- =================================================================== -->
-  <target name="init" depends="clean">  
+  <target name="init" depends="clean">
     <!-- Variables -->
     <property name="src.dir"        location="source" />
 
-    <property name="debug"          value="off" />    
-    <property name="deprecation"    value="off" />    
-    <property name="optimize"       value="on" />    
-    
+    <property name="debug"          value="off" />
+    <property name="deprecation"    value="off" />
+    <property name="optimize"       value="on" />
+
     <!-- Create dirs -->
     <mkdir dir="${dist.dir}"/>
     <mkdir dir="${build.dir}"/>
@@ -46,12 +47,13 @@
   <!-- =================================================================== -->
   <target name="semanticNet" depends="init">
     <mkdir dir="${build.dir}"/>
-    <javac destdir="${build.dir}" 
-           debug="${debug}" 
+    <javac destdir="${build.dir}"
+           debug="${debug}"
            deprecation="${deprecation}"
            optimize="${optimize}"
            excludes="**/test/**"
-           includeantruntime="false">
+           includeantruntime="false"
+           target="${target}">
       <src path="${src.dir}"/>
       <classpath>
       	<pathelement location="${lib.dir}/jdom.jar"/>
@@ -69,6 +71,5 @@
     <copy file="${dist.dir}/apiSemanticNetv3.1.jar" tofile="../merli_ws2/web/WEB-INF/lib/apiSemanticNetv3.1.jar"/>
 
   </target>
-  
-</project>
 
+</project>
