@@ -121,6 +121,9 @@
   <!-- BUILD                                                                -->
   <!-- =================================================================== -->
 	 <target name="build" depends="compile">
+     <copy todir="${build.dir}/WEB-INF/">
+       <fileset dir="${web.dir}/WEB-INF/" includes="tags/**"/>
+     </copy>
 	    <copy todir="${build.dir}/WEB-INF/">
 	      <fileset dir="${web.dir}/WEB-INF/" includes="*" excludesfile="${web.dir}/WEB-INF/web.xml"/>
 	    </copy>

@@ -5,9 +5,14 @@ import java.math.BigDecimal;
 import java.security.DigestException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -21,18 +26,21 @@ import edu.xtec.util.db.ConnectionBeanProvider;
 
 public class UserBD {
 
+	/** Default number of results on each page */
+	public static final int DEFAULT_LIMIT = 20;
+
 	protected static ConnectionBeanProvider broker;
 	private static final Logger logger = Logger.getRootLogger();
 	
 	private static final String APPLICATION_RESOURCES = "MediatecaResources";	
 
 	/**
-	 * Sol·licita un ConnectionBean al ConnectionBeanProvider, si aquest no està innicialitzat, ho fa.
+	 * Solï¿½licita un ConnectionBean al ConnectionBeanProvider, si aquest no estï¿½ innicialitzat, ho fa.
 	 * @return ConnectionBean, servit pel ConnectionBeanProvider.
 	 * @throws MerliDBException 
 	 */
 	private ConnectionBean connectBD() throws MerliDBException{
-		//Inicialitza el CBP si no ho està.
+		//Inicialitza el CBP si no ho estï¿½.
 		ConnectionBean bd = null;
 		try{
 			if (broker == null){
@@ -65,7 +73,7 @@ public class UserBD {
 	
 	/**
 	 * Tx per afegir un nou user a la BD.
-	 * @param user User, informació del nou User a crear.
+	 * @param user User, informaciï¿½ del nou User a crear.
 	 * @return
 	 * @throws MerliDBException 
 	 */
@@ -92,7 +100,7 @@ public class UserBD {
 				}
 				insertUser(user);
 			}else{
-				//Si ja existeix llança l'error corresponent.
+				//Si ja existeix llanï¿½a l'error corresponent.
 				return false;
 			}
 			
@@ -112,14 +120,14 @@ public class UserBD {
 	 * Inserta el user utilitzant el ConnectionBean.
 	 * @param user, objecte User amb les dades del nou user.
 	 * @param cb ConnectionBean connectat a la BD
-	 * @return El resultat de la operació
+	 * @return El resultat de la operaciï¿½
 	 * @throws Exception 
 	 */
 	public void insertUser(User user) throws MerliDBException{
 		boolean connect = false;
-		//Demana Connexió.
+		//Demana Connexiï¿½.
 		ConnectionBean cb = connectBD();
-		//Executa la inserció.
+		//Executa la inserciï¿½.
 		try{
 			//TODO: ull!!
 			AccesBD.executeInsert("mer_users", "'"+user.getUser()+"','"+user.getMail()+"','"+user.getContrasenya()+"',"+user.getUnitat(), cb.getConnection());
@@ -131,7 +139,7 @@ public class UserBD {
 			disconnectBD(cb);
 			throw new MerliDBException(MerliDBException.ERROR_INSERCIO);
 		}
-		//Finalitza la connexió a la BD. 
+		//Finalitza la connexiï¿½ a la BD. 
 		disconnectBD(cb);
 	}
 		
@@ -147,7 +155,7 @@ public class UserBD {
 		int res = 0;
 		boolean connect = false;
 
-		//Demana una connexió
+		//Demana una connexiï¿½
 		ConnectionBean cb = connectBD();
 		try{
 		res = AccesBD.executeExist("mer_users", "v_user",username,"", cb.getConnection());	
@@ -158,7 +166,7 @@ public class UserBD {
 			disconnectBD(cb);
 			throw new MerliDBException(20);
 		}
-		//Finalitza la connexió a la BD. 
+		//Finalitza la connexiï¿½ a la BD. 
 		disconnectBD(cb);			
 
 		switch(res){
@@ -181,7 +189,7 @@ public class UserBD {
 		else query += ", id_unitat = null";
 		if(user.getContrasenya()!=null) query += ", v_contrasenya = '"+user.getContrasenya()+"'";
 		//al.add(1,user.getMail());
-		//Executa la modificació.
+		//Executa la modificaciï¿½.
 		try{
 		AccesBD.executeUpdate("mer_users", condicio, query, cb.getConnection());		
 		this.insertPermission(user.getUser(),user.getPermissions());
@@ -343,11 +351,11 @@ public class UserBD {
 			//Comprova si el permis ja existeix a la BD
 			nPar = existsPermission(p.getPermission());
 			if( !nPar ){
-				//Inserta el permís en cas q no existeixi.
+				//Inserta el permï¿½s en cas q no existeixi.
 				if (!insertPermission(p))
 					throw new MerliDBException(MerliDBException.ERROR_INSERCIO);
 			}else{
-				//Si ja existeix llança l'error corresponent.
+				//Si ja existeix llanï¿½a l'error corresponent.
 				throw new MerliDBException(MerliDBException.CODI_EXISTENT);
 			}
 			
@@ -369,7 +377,7 @@ public class UserBD {
 		//al.add(0,user.getUser());		
 		query += ", v_description = '"+Utility.toParaulaDB(perm.getDescription())+"'";//query = "v_mail = ?";
 		//al.add(1,user.getMail());
-		//Executa la modificació.
+		//Executa la modificaciï¿½.
 		try{
 			AccesBD.executeUpdate("mer_permission", condicio, query, cb.getConnection());
 			insertOperations(perm.getIdPermission(), perm.getOperations());
@@ -416,10 +424,10 @@ public class UserBD {
 
 	public boolean insertPermission(Permission perm) throws MerliDBException{
 		boolean connect = false;
-		//Demana Connexió.
+		//Demana Connexiï¿½.
 		ConnectionBean cb = connectBD();
 		int idPermis=-1;
-		//Executa la inserció.
+		//Executa la inserciï¿½.
 		try {
 			idPermis = AccesBD.getNext("seq_merli_permis", cb.getConnection());
 		} catch (SQLException e) {
@@ -440,7 +448,7 @@ public class UserBD {
 			disconnectBD(cb);
 			throw new MerliDBException(MerliDBException.ERROR_INSERCIO);
 		}
-		//Finalitza la connexió a la BD. 
+		//Finalitza la connexiï¿½ a la BD. 
 		disconnectBD(cb);
 		return true;
 	}
@@ -449,7 +457,7 @@ public class UserBD {
 		int res = 0;
 		boolean connect = false;;
 
-//		Demana una connexió
+//		Demana una connexiï¿½
 		ConnectionBean cb = connectBD();
 		try{
 		res = AccesBD.executeExist("mer_permission", "v_permission",permission,"", cb.getConnection());	
@@ -460,7 +468,7 @@ public class UserBD {
 			disconnectBD(cb);
 			throw new MerliDBException(20);
 		}
-		//Finalitza la connexió a la BD. 
+		//Finalitza la connexiï¿½ a la BD. 
 		disconnectBD(cb);			
 
 		switch(res){
@@ -641,4 +649,100 @@ public class UserBD {
 		
 		return false;
 	}
+
+
+
+	/**
+	 * Fetches a set of users from the database. This method returns a
+	 * only page of results from the database.
+	 *
+	 * @param page			Page of results
+	 * @return 				List of users
+	 */
+	public List<User> fetchUsersPage(int page) throws MerliDBException {
+		final ConnectionBean cbean = connectBD();
+		final List<User> users = new ArrayList<>();
+
+        try (
+			Connection c = cbean.getConnection();
+			PreparedStatement s = prepareUsersPage(c, page);
+            ResultSet results = s.executeQuery();
+        ) {
+            while (results.next()) {
+                users.add(new User(
+					results.getString("v_user"),
+					results.getString("v_mail")
+				));
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+        } finally {
+			if (cbean instanceof ConnectionBean) {
+				broker.freeConnectionBean(cbean);
+			}
+		}
+
+		return users;
+	}
+
+
+	/**
+	 * Fetches the total number of users found on the database.
+	 *
+	 * @return 				Number of user records
+	 */
+	public int fetchUsersCount() throws MerliDBException {
+		final ConnectionBean cbean = connectBD();
+		final String query = "SELECT count(*) FROM mer_users";
+
+        try (
+			Connection c = cbean.getConnection();
+			Statement s = c.createStatement();
+            ResultSet results = s.executeQuery(query);
+        ) {
+			if(results.next()) {
+				return results.getInt(1);
+			}
+        } catch (SQLException e) {
+            logger.error(e);
+        } finally {
+			if (cbean instanceof ConnectionBean) {
+				broker.freeConnectionBean(cbean);
+			}
+		}
+
+		return 0;
+	}
+
+
+	/**
+	 * Creates a prepared statement to obtain a page of user results
+	 * from the database.
+	 *
+	 * @param connection		Database connection
+	 * @param page				Page of results to fetch
+	 *
+	 * @return					New statement instance
+	 */
+	private PreparedStatement prepareUsersPage(
+		Connection connection, int page) throws SQLException {
+
+		final int offset = (page < 2) ? 0 : DEFAULT_LIMIT * (page - 1);
+
+        final PreparedStatement statement =
+			connection.prepareStatement(
+				"SELECT v_user, v_mail FROM (" +
+				" SELECT v_user, v_mail, rownum rn FROM (" +
+				"  SELECT v_user, v_mail FROM mer_users " +
+				"   ORDER BY v_user ASC" +
+				" ) WHERE rownum <= ?" +
+				") WHERE rn > ?"
+			);
+
+		statement.setInt(1, offset + DEFAULT_LIMIT);
+		statement.setInt(2, offset);
+
+		return statement;
+	}
+
 }

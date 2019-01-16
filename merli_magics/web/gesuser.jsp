@@ -1,10 +1,20 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+	import="edu.xtec.merli.segur.User"
+	isELIgnored="false" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<%-- Custom tags --%>
+<%@ taglib prefix="w" tagdir="/WEB-INF/tags" %>
+
 <%-- JSTL tag libs --%>
+<%@ taglib prefix="c" uri="/WEB-INF/c.tld" %>
 <%@ taglib prefix="fmt" uri="/WEB-INF/fmt.tld" %>
+
 <%-- Struts provided Taglibs --%>
 <%@ taglib prefix="html" uri="/WEB-INF/struts-html-el.tld" %>
+<%@ taglib prefix="logic" uri="/WEB-INF/struts-logic-el.tld" %>
+
 <%@ include file="/web/taglibs.jsp"%>
 
 <html:html locale="true">
@@ -32,7 +42,7 @@
 	</div>
 	<div id="operacions">
 		<ul>
-			<li class="title">	
+			<li class="title">
 			Administració
 			</li>
 			<%if (((edu.xtec.merli.segur.User)request.getSession().getAttribute("user")).hasPermission(edu.xtec.merli.segur.operations.Operations.MAGICS.USERSET)){%>
@@ -52,7 +62,7 @@
 					<a href="permisos.do" title="cerca">PERMISOS</a>
 			</li>
 			<%} %>
-			<!-- 
+			<!--
 			<li title="Permisos usuari">
 				<img class="operacio" src="web/images/modificar.png" alt="P">
 				<a href="#" onclick="javascript:permisos();">
@@ -84,7 +94,7 @@
 				<div class="dreta2" id="username">
 					<a href="usuaris.do" title="Editar usuari"><%
 	if (request.getSession() != null && request.getSession().getAttribute("user") != null){
-		out.println(((edu.xtec.merli.segur.User)request.getSession().getAttribute("user")).getUser());	
+		out.println(((edu.xtec.merli.segur.User)request.getSession().getAttribute("user")).getUser());
 	//}
 	//else{
 	%><!-- jsp:getProperty name="permisos" property="user"/--><%
@@ -94,22 +104,31 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="cos">
-		<div id="titleContent">
-			Usuaris
-		</div>
+		<div id="titleContent">Usuaris</div>
 		<div id="content">
-				<!--p class="comentari">Usuaris/aries del sistema:</p--><%
+			<!--p class="comentari">Usuaris/aries del sistema:</p--><%
 		if (request.getParameter("nodeType") != null && request.getParameter("nodeType").compareTo("area")==0){
 			%>
-				<PHTM:ul name="usuaris" id="permission" property="list" onclick=""></PHTM:ul>	
-		<%}else{
-		%>
-				<PHTM:ul name="usuaris" id="user" property="list" onclick=""></PHTM:ul>	
-		<%}%>	
-				<p class="" id="nouuser">	</p>				
+				<PHTM:ul name="usuaris" id="permission" property="list" onclick=""></PHTM:ul>
+		<% }else{ %>
+
+			<%-- Display the list of users --%>
+
+			<logic:iterate id="user" name="users" type="User">
+			  <w:user name="${user.user}" mail="${user.mail}"/>
+			</logic:iterate>
+
+			<%-- Displays the pagination footer --%>
+
+			<w:pager current="${currentPage}" last="${lastPage}"/>
+
+		<%}%>
+			<p class="" id="nouuser">	</p>
 		</div>
 	</div>
+
 </div>
 </html:form>
 </body>

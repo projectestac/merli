@@ -43,7 +43,7 @@ div.modifperm span{
 
 div#nouperm div.modifperm{
 border: 0px;
-}	
+}
 
 div#nouperm{
 		position:absolute;
@@ -52,9 +52,23 @@ div#nouperm{
 		width: 550px;
 		line-height:1.8em;
 		margin-left: 22px;
-		background-color:#eeeeee;	
+		background-color:#eeeeee;
 		padding:5px 0px 5px 15px;
 		border-right: 1px solid #bbbbbb;
 		border-bottom:1px solid #bbbbbb;
 		display:none;
+}
+
+/* Pagination */
+
+.pagination {
+	padding: 20px;
+	font-size: 10pt;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.pagination-links a {
+	padding: 5px;
 }
