@@ -1,4 +1,9 @@
 *.idea
 *.iml
-*/dist/*
+*/dist/INT
+*/dist/PRE
+*/dist/PRO
+*/dist/*.jar
 */build/*
+*.project
+*.settings
