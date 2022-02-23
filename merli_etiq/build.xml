@@ -239,8 +239,9 @@
     	<fileset dir="${build.dir}/WEB-INF/classes" includes="edu/xtec/merli/RecursMerli.class"/>
     </copy>
     <jar jarfile="${dist.dir}/merliBasics.jar" basedir="${build.dir}/merliBasics" />
-      <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_harvesting/web/WEB-INF/lib/merliBasics.jar"/>
-      <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_ws2/web/WEB-INF/lib/merliBasics.jar"/>
+    <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_harvesting/web/WEB-INF/lib/merliBasics.jar"/>
+    <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_ws/web/WEB-INF/lib/merliBasics.jar"/>
+  	<copy file="${dist.dir}/merliBasics.jar" tofile="../merli_ws2/web/WEB-INF/lib/merliBasics.jar"/>
 
   </target>
 </project>
