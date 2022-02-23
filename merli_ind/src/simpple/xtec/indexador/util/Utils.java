@@ -113,7 +113,7 @@ public class Utils {
         HttpClient client = null;
         HttpClientParams clientParams = null;
         try {
-            Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Security.addProvider(new sun.security.ssl.SunJSSE());
             System.setProperty("java.protocol.handler.pkgs", "com.sun.net.ssl.internal.www.protocol");
 
             clientParams = new HttpClientParams();
