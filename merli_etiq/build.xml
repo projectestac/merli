@@ -217,7 +217,7 @@
            <attribute name="Built-By" 
                       value="${user.name}"/>
          </manifest>
-      <fileset dir="${dist.dir}" includes="e13_merli.war"/>
+      <fileset dir="${build.dir}" includes="e13_merli.war"/>
     </ear>
       <delete dir="${build.dir}"/>
   </target>
