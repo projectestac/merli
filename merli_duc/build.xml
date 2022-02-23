@@ -221,7 +221,8 @@
         </copy>
 
         <jar jarfile="${dist.dir}/apiSemanticMerli.jar" basedir="${build.dir}/semanticnet" />
-        <copy file="${dist.dir}/apiSemanticMerli.jar" tofile="../merli_ws2/web/WEB-INF/lib/apiSemanticMerli.jar"/>
+        <copy file="${dist.dir}/apiSemanticMerli.jar" tofile="../merli_ws/web/WEB-INF/lib/apiSemanticMerli.jar"/>
+    	<copy file="${dist.dir}/apiSemanticMerli.jar" tofile="../merli_ws2/web/WEB-INF/lib/apiSemanticMerli.jar"/>
     </target>
 </project>
 
