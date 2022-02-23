@@ -4,7 +4,7 @@
 <property name="lib.dir"        location="lib" />
 <property name="build.dir"      location="build" />
 <property name="dist.dir"       location="dist" />
-
+	
 <!-- Patterns -->
 <patternset id="props" >
     <include name="**/*.properties"/>
@@ -27,6 +27,10 @@
     <property name="debug"          value="off" />
     <property name="deprecation"    value="off" />
     <property name="optimize"       value="on" />
+	
+    <property name="ant.build.javac.source" value="1.7"/>
+    <property name="ant.build.javac.target" value="1.7"/>
+    <property name="ant.build.javac.encoding" value="ISO-8859-1"/>
 
     <!-- Create dirs -->
     <mkdir dir="${dist.dir}"/>
@@ -50,7 +54,10 @@
     <javac destdir="${build.dir}"
            debug="${debug}"
            deprecation="${deprecation}"
-           optimize="${optimize}">
+           optimize="${optimize}"
+           encoding="${ant.build.javac.encoding}"
+           source="${ant.build.javac.source}"
+           target="${ant.build.javac.target}">
         <src path="${src.dir}"/>
         <classpath>
             <pathelement location="${lib.dir}/soap.jar"/>

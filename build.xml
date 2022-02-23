@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+
+<!--
+ * Merlí: Catalog of educational resources.
+ * Copyright (C) 2018 Department of Education, Government of Catalonia
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<project name="merli" default="dist" basedir=".">
+  <property name="dist.target" value="pro"/>
+
+  <!-- Clean up -->
+
+  <target name="clean" description="Remove temporary build files">
+    <ant dir="correoWS" target="clean"/>
+    <ant dir="semanticnet" target="clean"/>
+    <ant dir="merli_cer" target="clean"/>
+    <ant dir="merli_duc" target="clean"/>
+    <ant dir="merli_etiq" target="clean"/>
+    <ant dir="merli_harvesting" target="clean"/>
+    <ant dir="merli_ind" target="clean"/>
+    <ant dir="merli_magics" target="clean"/>
+    <ant dir="merli_ws" target="clean"/>
+    <ant dir="merli_ws2" target="clean"/>
+  </target>
+
+  <!-- Compile and copy libraries -->
+
+  <target name="libs" description="Compile the required libraries">
+    <ant dir="correoWS" target="correoWS"/>
+    <ant dir="semanticnet" target="semanticNet"/>
+    <ant dir="merli_duc" target="apiSemanticMerli"/>
+    <ant dir="merli_duc" target="merliUtils"/>
+    <ant dir="merli_etiq" target="merliBasics"/>
+    <ant dir="merli_ws2" target="merliWS2.jar"/>
+  </target>
+
+  <!-- Clean up and build the project -->
+
+  <target name="dist" depends="clean,libs"
+          description="Packages the applications for distribution">
+    <ant dir="merli_magics" target="${dist.target}"/>
+    <ant dir="merli_harvesting" target="${dist.target}"/>
+    <ant dir="merli_duc" target="${dist.target}"/>
+    <ant dir="merli_ws2" target="${dist.target}"/>
+    <ant dir="merli_ind" target="${dist.target}"/>
+    <ant dir="merli_cer" target="${dist.target}"/>
+    <ant dir="merli_etiq" target="${dist.target}"/>
+  </target>
+
+  <!-- Predefined distribution targets -->
+
+  <target name="dist-int" description="Package for: integration">
+    <echo message="Building packages for the INT server"/>
+    <antcall target="dist">
+      <param name="dist.target" value="int"/>
+    </antcall>
+  </target>
+
+  <target name="dist-pre" description="Package for: preproduction">
+    <echo message="Building packages for the PRE server"/>
+    <antcall target="dist">
+      <param name="dist.target" value="pre"/>
+    </antcall>
+  </target>
+
+  <target name="dist-pro" description="Package for: production">
+    <echo message="Building packages for the PRO server"/>
+    <antcall target="dist">
+      <param name="dist.target" value="pro"/>
+    </antcall>
+  </target>
+
+  <target name="dist-vm" description="Package for: virtual machine">
+    <echo message="Building packages for the VM server"/>
+    <antcall target="dist">
+      <param name="dist.target" value="vm"/>
+    </antcall>
+  </target>
+
+</project>
