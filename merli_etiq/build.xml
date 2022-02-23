@@ -150,7 +150,7 @@
 	
    <target name="dist" 
           depends="build">
-    <war destfile="${dist.dir}/e13_merli.war" 
+    <war destfile="${build.dir}/e13_merli.war" 
          webxml="WEB-INF/web.xml">
     	
          <manifest>
