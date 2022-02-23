@@ -54,7 +54,8 @@
     <ant dir="merli_magics" target="${dist.target}"/>
     <ant dir="merli_harvesting" target="${dist.target}"/>
     <ant dir="merli_duc" target="${dist.target}"/>
-    <ant dir="merli_ws2" target="${dist.target}"/>
+  	<ant dir="merli_ws" target="${dist.target}"/>
+  	<ant dir="merli_ws2" target="${dist.target}"/>
     <ant dir="merli_ind" target="${dist.target}"/>
     <ant dir="merli_cer" target="${dist.target}"/>
     <ant dir="merli_etiq" target="${dist.target}"/>

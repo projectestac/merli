@@ -64,7 +64,8 @@
     <copy file="${dist.dir}/apiSemanticNetv3.1.jar" tofile="../merli_duc/web/WEB-INF/lib/apiSemanticNetv3.1.jar"/>
     <copy file="${dist.dir}/apiSemanticNetv3.1.jar" tofile="../merli_harvesting/web/WEB-INF/lib/apiSemanticNetv3.1.jar"/>
     <copy file="${dist.dir}/apiSemanticNetv3.1.jar" tofile="../merli_magics/web/WEB-INF/lib/apiSemanticNetv3.1.jar"/>
-    <copy file="${dist.dir}/apiSemanticNetv3.1.jar" tofile="../merli_ws2/web/WEB-INF/lib/apiSemanticNetv3.1.jar"/>
+	<copy file="${dist.dir}/apiSemanticNetv3.1.jar" tofile="../merli_ws/web/WEB-INF/lib/apiSemanticNetv3.1.jar"/>
+	<copy file="${dist.dir}/apiSemanticNetv3.1.jar" tofile="../merli_ws2/web/WEB-INF/lib/apiSemanticNetv3.1.jar"/>
 
   </target>
   
