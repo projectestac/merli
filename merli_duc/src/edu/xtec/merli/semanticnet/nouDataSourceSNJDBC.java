@@ -75,7 +75,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 			try {
 				cb = this.connectBD();
 				Map m =  AccesBD.getObject("cur_"+nodeType,l,id_node+" = "+idNode,cb.getConnection());
-				dto = (Hashtable)mapToNodesDTO(m, nodeType).get(0);
+				dto = (Hashtable)mapToNodesDTO(m, nodeType).get(0);				
 			} catch (Exception e) {
 				logger.warn("The node "+idNode+nodeType+" doesn't exists.");
 				SemanticException the = new SemanticException("NonExistentNode");
@@ -132,10 +132,10 @@ public class nouDataSourceSNJDBC  implements DataSource{
 		}
 
 		/**
-		 * Retorna el llistat de nodes amb l'identificador a 'lnod' i del típus 'nodeType'.
+		 * Retorna el llistat de nodes amb l'identificador a 'lnod' i del tï¿½pus 'nodeType'.
 		 * @param lnod Llistat de identificador dels nodes que es vol carregar.
-		 * @param nodeType Típus del nodes que es volen carregar.
-		 * @return {nodeDTO} on 'nodesDTO' és un hashtable amb la informació necessaria
+		 * @param nodeType Tï¿½pus del nodes que es volen carregar.
+		 * @return {nodeDTO} on 'nodesDTO' ï¿½s un hashtable amb la informaciï¿½ necessaria
 		 * @throws SemanticException
 		 */
 		public List getNodes(List lnod, String nodeType) throws SemanticException {
@@ -163,7 +163,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 				}
 				condicio = "id_node in "+condicio;
 			}else{
-				/*Recupera tots els nodes del típus donat.*/
+				/*Recupera tots els nodes del tï¿½pus donat.*/
 				condicio = " ";
 			}
 			order = Utility.toParaula(lorder.toString());
@@ -171,7 +171,6 @@ public class nouDataSourceSNJDBC  implements DataSource{
 				cb = this.connectBD();
 				m =  AccesBD.getObjectList("cur_"+nodeType,l,condicio,order,cb.getConnection());
 				lDTO = this.mapToNodesDTO(m, nodeType);
-				logger.warn("PRUEBA 2 The node "+nodeType);
 			} catch (Exception e) {
 				logger.warn("Error loading list of nodes "+nodeType+".");
 				SemanticException the = new SemanticException("NonExistentNode");
@@ -230,12 +229,12 @@ public class nouDataSourceSNJDBC  implements DataSource{
 		
 		/**
 		 * Retorna un llistat amb totes les relacions del tipus 'type' an la direccio 'direction'
-		 * del node 'idnode' del típus 'nodeType'
+		 * del node 'idnode' del tï¿½pus 'nodeType'
 		 * @param idNode Identificador del node.
-		 * @param nodeType Típus del node 'idNode'.
-		 * @param type Típus de la relació.
-		 * @param direction Direcció de les relacions buscades.
-		 * @return Retorna un llistat {dtonode} on 'dtonode' és un hashtable amb la informació 
+		 * @param nodeType Tï¿½pus del node 'idNode'.
+		 * @param type Tï¿½pus de la relaciï¿½.
+		 * @param direction Direcciï¿½ de les relacions buscades.
+		 * @return Retorna un llistat {dtonode} on 'dtonode' ï¿½s un hashtable amb la informaciï¿½ 
 		 * del node. 
 		 * @throws SemanticException
 		 */
@@ -261,7 +260,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 				l2 = (List) m.get(l.get(1));
 				if (l.size() > 2) l3 = (List) m.get(l.get(2));
 				for (int i=0;i< l1.size();i++){
-					/*En cas que algun dels camps sigui 'null' es creu que la relació no existeix.
+					/*En cas que algun dels camps sigui 'null' es creu que la relaciï¿½ no existeix.
 					 * 
 					 */
 					try{
@@ -319,7 +318,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 				if (l.size() > 2) l3 = (List) m.get(l.get(2));
 				for (int i=0;i< l1.size();i++){
 					/*
-					 * En cas que algun dels camps sigui 'null' es creu que la relació no existeix.
+					 * En cas que algun dels camps sigui 'null' es creu que la relaciï¿½ no existeix.
 					 * /
 					try{
 						Hashtable dto = new Hashtable();
@@ -387,12 +386,12 @@ public class nouDataSourceSNJDBC  implements DataSource{
 		
 
 		/**
-		 * Sol·licita un ConnectionBean al ConnectionBeanProvider, si aquest no està innicialitzat, ho fa.
+		 * Solï¿½licita un ConnectionBean al ConnectionBeanProvider, si aquest no estï¿½ innicialitzat, ho fa.
 		 * @return ConnectionBean, servit pel ConnectionBeanProvider.
-		 * @throws  ThesaurusException
+		 * @throws ThesaurusException 
 		 */
 		private ConnectionBean connectBD() throws SemanticException{
-			//Inicialitza el CBP si no ho està.
+			//Inicialitza el CBP si no ho estï¿½.
 			ConnectionBean bd = null;	
 			Hashtable propDoc;
 			//String folderProp = "../../../../";
@@ -420,7 +419,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 				the.setCode(SemanticException.DATABASECONNECTIONERROR);
 				the.setStackTrace(e.getStackTrace());
 				throw the;
-				}//throw new Exception("Error en la connexió amb la base de dades.");}		
+				}//throw new Exception("Error en la connexiï¿½ amb la base de dades.");}		
 			//Retorna un ConnectionBean.
 			return bd;
 		}
@@ -438,12 +437,12 @@ public class nouDataSourceSNJDBC  implements DataSource{
 
 		
 		/**
-		 * converteix un dto en un String per executar una operació de 'insert' o de 'update'
+		 * converteix un dto en un String per executar una operaciï¿½ de 'insert' o de 'update'
 		 * segons l'indicat a 'insert'.
 		 * @param l Llista de camps possibles.
 		 * @param dto Dades del node a insertar/modificar
 		 * @param insert TRUE cadena per relaitzar un 'insert', FALSE per realitzar un 'update'.
-		 * @return Caden a punt per formar part d'una instrucció SQL de 'insert' o de 'update'
+		 * @return Caden a punt per formar part d'una instrucciï¿½ SQL de 'insert' o de 'update'
 		 * @throws Exception
 		 */
 		private String dto2string(List l, Hashtable dto, boolean insert) throws Exception{
@@ -557,7 +556,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 			l = this.getAttributesNodeType(sNType,lorder);
 			try{
 				cb = this.connectBD();
-				//Recupera el següent valor d'identificador per insertar a la taula.
+				//Recupera el segï¿½ent valor d'identificador per insertar a la taula.
 				idNode = AccesBD.getNext("cur_nodes", cb.getConnection());
 				if (((String)DTO.get("nodeType")).compareTo("history") == 0) 
 					DTO.put("idHistory",new Integer(idNode));
@@ -583,7 +582,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 					String notenode;
 					try {
 						if (DTO.get("note") != null && ((String)DTO.get("note")).length() > 2){
-							//Recupera el següent valor d'identificador per insertar a la taula notes.
+							//Recupera el segï¿½ent valor d'identificador per insertar a la taula notes.
 							int idNote = AccesBD.getNext("seq_notes", cb.getConnection());
 							notenode = idNote+","+DTO.get("idNode")+", '"+DTO.get("nodeType")+"', '";
 							notenode += Utility.toParaulaDB((String)(String)DTO.get("note"))+"', ";
@@ -603,7 +602,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 					ArrayList thes = (ArrayList) ((Hashtable) DTO.get("properties")).get("thesaurusKeys");
 					try {						
 						for (int j=0;j<thes.size();j++){
-							//Recupera el següent valor d'identificador per insertar a la taula notes.
+							//Recupera el segï¿½ent valor d'identificador per insertar a la taula notes.
 							insThesaurus = DTO.get("idNode")+", '"+DTO.get("nodeType")+"', "+thes.get(j);									
 							res = AccesBD.executeInsert("cur_thesaurus",insThesaurus,cb.getConnection());
 						}
@@ -730,7 +729,7 @@ public class nouDataSourceSNJDBC  implements DataSource{
 						this.addNewNode(hConf);
 						try {
 							if (dto.get("note") != null && ((String)dto.get("note")).length() > 2){
-								//Recupera el següent valor d'identificador per insertar a la taula notes.
+								//Recupera el segï¿½ent valor d'identificador per insertar a la taula notes.
 								int idNote = AccesBD.getNext("seq_notes", cb.getConnection());
 								String notenode = idNote+","+idNode+", '"+sNType+"', '";
 								notenode += (String)dto.get("note")+"', ";
@@ -865,9 +864,9 @@ public class nouDataSourceSNJDBC  implements DataSource{
 
 
 		/**
-		 * Retorna un llistat amb tots els atributs d'un node del típus 'nodeType'.
-		 * @param nodeType Típus de node.
-		 * @param lorder Parametre de sortida. Conté els camps per realitzar una consulta
+		 * Retorna un llistat amb tots els atributs d'un node del tï¿½pus 'nodeType'.
+		 * @param nodeType Tï¿½pus de node.
+		 * @param lorder Parametre de sortida. Contï¿½ els camps per realitzar una consulta
 		 * ordenada
 		 * @return Llistat de atributs del node.
 		 */
@@ -916,9 +915,9 @@ public class nouDataSourceSNJDBC  implements DataSource{
 		
 		
 		/**
-		 * Converteix un map a dto representatiu d'un node del típus 'nodeType'.
+		 * Converteix un map a dto representatiu d'un node del tï¿½pus 'nodeType'.
 		 * @param m Map resultant d'una consulta SQL al sistema.
-		 * @param nodeType Típus de nodes esperats.
+		 * @param nodeType Tï¿½pus de nodes esperats.
 		 * @return Llistat de DTO's, un per cada node.
 		 */
 		protected List mapToNodesDTO(Map m, String nodeType){
@@ -1009,9 +1008,9 @@ public class nouDataSourceSNJDBC  implements DataSource{
 		 * Retorna una hashtable amb els valors adequats per poder realitzar una consulta al
 		 * sistema.
 		 * @param idNode Identificador del node que es vol consultar.
-		 * @param nodeType Típus del node que es vol consultar.
-		 * @param type Típus de relació que es busca.
-		 * @param direction Direcció de la relació.
+		 * @param nodeType Tï¿½pus del node que es vol consultar.
+		 * @param type Tï¿½pus de relaciï¿½ que es busca.
+		 * @param direction Direcciï¿½ de la relaciï¿½.
 		 * @return Hashtable amb els valors necessaris per realitzar una consulta.
 		 */
 		protected Hashtable configRelationQuery(int idNode, String nodeType, String type, int direction) {

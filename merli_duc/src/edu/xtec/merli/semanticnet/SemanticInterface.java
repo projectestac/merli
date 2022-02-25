@@ -32,7 +32,7 @@ public class SemanticInterface {
             logger.info("Loading information of SemanticNet.");
             Hashtable hprops = new Hashtable();
             Properties pProp = new Properties();
-            /*Carrega el properties amb l'adreça de l'XML de configuració del SemanticNet
+            /*Carrega el properties amb l'adreï¿½a de l'XML de configuraciï¿½ del SemanticNet
              InputStream is = getClass().getResourceAsStream("../../../../semanticnet.properties");
              is = getClass().getResourceAsStream("../../../../semanticnet.properties");*/
             InputStream is = getClass().getResourceAsStream("/semanticnet.properties");
@@ -59,10 +59,10 @@ public class SemanticInterface {
     }
 
     /**
-     * Retrona el node amb 'idNode' com a id. i del típus 'sNType'.
+     * Retrona el node amb 'idNode' com a id. i del tï¿½pus 'sNType'.
      *
      * @param idNode Identificador del node.
-     * @param sNType Típus del node.
+     * @param sNType Tï¿½pus del node.
      * @return
      */
     public Node getNode(int idNode, String sNType) {
@@ -132,8 +132,8 @@ public class SemanticInterface {
      * Retorna els fills d'aquest, els seus germans, el seus antecessors i els
      * corresponents germans de cada un d'aquests.
      *
-     * @param idNode Identificador del node amb quí han d'estar relacionats.
-     * @return Llista de {infonode} on els infonode contenen la informació
+     * @param idNode Identificador del node amb quï¿½ han d'estar relacionats.
+     * @return Llista de {infonode} on els infonode contenen la informaciï¿½
      * necessaria d'un node.
      */
     public ArrayList getLevels(int idNode) {
@@ -171,7 +171,7 @@ public class SemanticInterface {
                 n2 = (Node) iter.next();
                 ((ArrayList) h.get("list")).add(n2.toDTO());//hs);				
             }
-            //La família
+            //La famï¿½lia
             if (n.getProperties() != null && n.getProperties().containsKey("relatedLevel")) {
                 //Fills del Pare, germans.
                 al = (ArrayList) snet.getNodesRelated(((Integer) n.getProperties().get("relatedLevel")).intValue(), "level", "RLL", RelationType.DEST);
@@ -215,10 +215,10 @@ public class SemanticInterface {
                     lOnc = (ArrayList) h.get("list");
                 }
             } else {
-                //El node passat és el 0. Punt d'origen.
+                //El node passat ï¿½s el 0. Punt d'origen.
                 if (((ArrayList) h.get("list")).isEmpty()) {
                     h = new Hashtable();
-                    h.put("term", "Clica aquí per afegir un node Level.");
+                    h.put("term", "Clica aquï¿½ per afegir un node Level.");
                     h.put("idNode", new Integer(-1));
                     h.put("nodeType", "level");
                     h.put("category", "etapa");
@@ -247,12 +247,12 @@ public class SemanticInterface {
 
         } catch (SemanticException e) {
             // TODO Auto-generated catch block
-            logger.warn("Error on load Level information.");
+            logger.error("Error on load Level information.");
         } catch (Exception e) {
-            logger.warn(e.getMessage() + " error on getting Levels.");
+            logger.error(e.getMessage() + " error on getting Levels.");
         }
         h = new Hashtable();
-        h.put("term", "Clica aquí per afegir un node Level.");
+        h.put("term", "Clica aquï¿½ per afegir un node Level.");
         h.put("idNode", new Integer(-1));
         h.put("nodeType", "level");
         h.put("category", "etapa");
@@ -296,11 +296,11 @@ public class SemanticInterface {
      * Retorna tots els nodes del tipus "arees" relacionats amb el node
      * 'idLevel' donat.
      *
-     * @param idArea Identificador del node "area" amb quí han d'estar
+     * @param idArea Identificador del node "area" amb quï¿½ han d'estar
      * relacionats.
-     * @param idLevel Identificador del node "level" amb quí han d'estar
+     * @param idLevel Identificador del node "level" amb quï¿½ han d'estar
      * relacionats.
-     * @return Llista de {infonode} on els 'infonode' contenen la informació
+     * @return Llista de {infonode} on els 'infonode' contenen la informaciï¿½
      * necessaria d'un node.
      */
     public ArrayList getArees(int idArea, int idLevel) {
@@ -343,10 +343,10 @@ public class SemanticInterface {
         }
         al.clear();
         h = new Hashtable();
-        h.put("term", "Clica aquí per afegir un node Area.");
+        h.put("term", "Clica aquï¿½ per afegir un node Area.");
         h.put("idNode", new Integer(-1));
         h.put("nodeType", "area");
-        h.put("description", "Clica aquí per agfegir un nou node al sistema.");
+        h.put("description", "Clica aquï¿½ per agfegir un nou node al sistema.");
 
         al.add(h);
 
@@ -465,16 +465,16 @@ public class SemanticInterface {
     }
 
     /**
-     * Retorna tots els nodes del típus "content" relacionats amb els nodes
+     * Retorna tots els nodes del tï¿½pus "content" relacionats amb els nodes
      * donats.
      *
-     * @param idContent Identificador del node "content" amb quí han d'estar
+     * @param idContent Identificador del node "content" amb quï¿½ han d'estar
      * relacionats.
-     * @param idLevel Identificador del node "area" amb quí han d'estar
+     * @param idLevel Identificador del node "area" amb quï¿½ han d'estar
      * relacionats.
-     * @param idArea Identificador del node "level" amb quí han d'estar
+     * @param idArea Identificador del node "level" amb quï¿½ han d'estar
      * relacionats.
-     * @return Llista de {infonode} on els 'infonode' contenen la informació
+     * @return Llista de {infonode} on els 'infonode' contenen la informaciï¿½
      * necessaria d'un node.
      */
     public Hashtable getContents(int idContent, int idLevel, int idArea) {
@@ -508,29 +508,29 @@ public class SemanticInterface {
 
         if (((ArrayList) hRes.get("cp")).isEmpty()) {
             h = new Hashtable();
-            h.put("term", "Clica aquí per afegir un node Contingut.");
+            h.put("term", "Clica aquï¿½ per afegir un node Contingut.");
             h.put("idNode", new Integer(-1));
             h.put("nodeType", "content");
             h.put("category", "cp");
-            h.put("description", "Clica aquí per agfegir un nou node al sistema.");
+            h.put("description", "Clica aquï¿½ per agfegir un nou node al sistema.");
             ((ArrayList) hRes.get("cp")).add(h);
         }
         if (((ArrayList) hRes.get("cc")).isEmpty()) {
             h = new Hashtable();
-            h.put("term", "Clica aquí per afegir un node Contingut.");
+            h.put("term", "Clica aquï¿½ per afegir un node Contingut.");
             h.put("idNode", new Integer(-1));
             h.put("nodeType", "content");
             h.put("category", "cc");
-            h.put("description", "Clica aquí per agfegir un nou node al sistema.");
+            h.put("description", "Clica aquï¿½ per agfegir un nou node al sistema.");
             ((ArrayList) hRes.get("cc")).add(h);
         }
         if (((ArrayList) hRes.get("ca")).isEmpty()) {
             h = new Hashtable();
-            h.put("term", "Clica aquí per afegir un node Contingut.");
+            h.put("term", "Clica aquï¿½ per afegir un node Contingut.");
             h.put("idNode", new Integer(-1));
             h.put("nodeType", "content");
             h.put("category", "ca");
-            h.put("description", "Clica aquí per agfegir un nou node al sistema.");
+            h.put("description", "Clica aquï¿½ per agfegir un nou node al sistema.");
             ((ArrayList) hRes.get("ca")).add(h);
         }
 
@@ -538,14 +538,14 @@ public class SemanticInterface {
     }
 
     /**
-     * Retorna tots els nodes del típus "objective" relacionats amb els nodes
+     * Retorna tots els nodes del tï¿½pus "objective" relacionats amb els nodes
      * donats.
      *
-     * @param idLevel Identificador del node "area" amb quí han d'estar
+     * @param idLevel Identificador del node "area" amb quï¿½ han d'estar
      * relacionats.
-     * @param idArea Identificador del node "level" amb quí han d'estar
+     * @param idArea Identificador del node "level" amb quï¿½ han d'estar
      * relacionats.
-     * @return Llista de {infonode} on els 'infonode' contenen la informació
+     * @return Llista de {infonode} on els 'infonode' contenen la informaciï¿½
      * necessaria d'un node.
      */
     public Hashtable getObjectives(int idLevel, int idArea) {
@@ -595,20 +595,20 @@ public class SemanticInterface {
 
         if (((ArrayList) hRes.get("op")).isEmpty()) {
             h = new Hashtable();
-            h.put("term", "Clica aquí per afegir un node Objectiu.");
+            h.put("term", "Clica aquï¿½ per afegir un node Objectiu.");
             h.put("idNode", new Integer(-1));
             h.put("nodeType", "objective");
             h.put("category", "op");
-            h.put("description", "Clica aquí per agfegir un nou node al sistema.");
+            h.put("description", "Clica aquï¿½ per agfegir un nou node al sistema.");
             ((ArrayList) hRes.get("op")).add(h);
         }
         if (((ArrayList) hRes.get("ot")).isEmpty()) {
             h = new Hashtable();
-            h.put("term", "Clica aquí per afegir un node Objectiu.");
+            h.put("term", "Clica aquï¿½ per afegir un node Objectiu.");
             h.put("idNode", new Integer(-1));
             h.put("nodeType", "objective");
             h.put("category", "ot");
-            h.put("description", "Clica aquí per agfegir un nou node al sistema.");
+            h.put("description", "Clica aquï¿½ per agfegir un nou node al sistema.");
             ((ArrayList) hRes.get("ot")).add(h);
         }
         return hRes;
@@ -620,8 +620,8 @@ public class SemanticInterface {
      * @param idNode Node del que s'en busquen els germans.
      * @param idLevel Identificador del node "level" relacionat al node 'idNode'
      * @param idArea Identificador del node "area" relacionat al node 'idNode'
-     * @param nodeType Típus del node donat.
-     * @return Llista de {infonode} on els 'infonode' contenen la informació
+     * @param nodeType Tï¿½pus del node donat.
+     * @return Llista de {infonode} on els 'infonode' contenen la informaciï¿½
      * necessaria d'un node.
      */
     protected ArrayList getNodesList(int idNode, int idLevel, int idArea, String nodeType) {
@@ -666,16 +666,16 @@ public class SemanticInterface {
 
     /**
      * Intercanvia les posicions de dos nodes. La del node donat 'idNode' i la
-     * del node germà situat en la posició anterior o posterior, depenent del
+     * del node germï¿½ situat en la posiciï¿½ anterior o posterior, depenent del
      * valor de 'amunt'.
      *
-     * @param idNode Identificador del node que es vol canviar de posició.
-     * @param idLevel Identificador del node "level" relacionat amb aquest. Útil
-     * en cas de ser del típus "content" o "objective.
-     * @param idArea Identificador del node "area" relacionat amb aquest. Útil
-     * en cas de ser del típus "content" o "objective.
-     * @param nodeType Típus del node 'idNode'
-     * @param amunt TRUE si es vol canviar la posició amb el germà superior,
+     * @param idNode Identificador del node que es vol canviar de posiciï¿½.
+     * @param idLevel Identificador del node "level" relacionat amb aquest. ï¿½til
+     * en cas de ser del tï¿½pus "content" o "objective.
+     * @param idArea Identificador del node "area" relacionat amb aquest. ï¿½til
+     * en cas de ser del tï¿½pus "content" o "objective.
+     * @param nodeType Tï¿½pus del node 'idNode'
+     * @param amunt TRUE si es vol canviar la posiciï¿½ amb el germï¿½ superior,
      * altrament FALSE.
      * @throws DUCException
      */
@@ -732,7 +732,7 @@ public class SemanticInterface {
     /**
      * Afegeix al sistema el node descrit en 'dtonode'.
      *
-     * @param dtoNode Hashtable amb tota la informació necessaria del node.
+     * @param dtoNode Hashtable amb tota la informaciï¿½ necessaria del node.
      * @throws DUCException
      */
     public void addNode(Hashtable dtoNode) throws DUCException {
@@ -781,7 +781,7 @@ public class SemanticInterface {
 
             lNodes = this.getNodesList(idPNodes.intValue(), ((Integer) ((Hashtable) dtoNode.get("properties")).get("relatedLevel")).intValue(), ((Integer) ((Hashtable) dtoNode.get("properties")).get("idArea")).intValue(), (String) dtoNode.get("nodeType"));
             lNodes = Utility.orderListByPosition(lNodes);
-            //Reordena tots els nodes germans i li dona la nova posició al nou node.
+            //Reordena tots els nodes germans i li dona la nova posiciï¿½ al nou node.
             int aux = 0;
             for (int i = 0; i < lNodes.size(); i++) {
                 orderNodes = (Hashtable) lNodes.get(i);
@@ -852,7 +852,7 @@ public class SemanticInterface {
                 String insThesaurus;
                 ArrayList thes = (ArrayList) ((Hashtable) dtoNode.get("properties")).get("thesaurusKeys");
                 for (int j = 0; j < thes.size(); j++) {
-                    //Recupera el següent valor d'identificador per insertar a la taula cur_thesaurus.
+                    //Recupera el segï¿½ent valor d'identificador per insertar a la taula cur_thesaurus.
                     r = new Relation("RET", n.getIdNode(), n.getNodeType(), ((Integer) thes.get(j)).intValue(), "thesaurus");
                     try {
                         snet.addNewRelation(r);
@@ -869,9 +869,9 @@ public class SemanticInterface {
 
     /**
      * Modifica els valors presents en 'dtonode'. Els camps 'idNode' i
-     * 'nodeType' hi són obligatoris.
+     * 'nodeType' hi sï¿½n obligatoris.
      *
-     * @param dtonode Hashtable amb la informació dels camps que es volen
+     * @param dtonode Hashtable amb la informaciï¿½ dels camps que es volen
      * modificar.
      * @throws DUCException
      */
@@ -901,7 +901,7 @@ public class SemanticInterface {
                     }
                 }
                 for (int j = 0; j < thes.size(); j++) {
-                    //Recupera el següent valor d'identificador per insertar a la taula notes.
+                    //Recupera el segï¿½ent valor d'identificador per insertar a la taula notes.
                     rel = new Relation("RET", ((Integer) dtonode.get("idNode")).intValue(), (String) dtonode.get("nodeType"), ((Integer) thes.get(j)).intValue(), "thesaurus");
                     try {
                         snet.addNewRelation(rel);
@@ -917,10 +917,10 @@ public class SemanticInterface {
     }
 
     /**
-     * Elimina del sistema el node 'idNode' del típus 'sNType'.
+     * Elimina del sistema el node 'idNode' del tï¿½pus 'sNType'.
      *
      * @param idNode Identificador del node que es vol eliminar.
-     * @param sNType Típus del node 'idNode'.
+     * @param sNType Tï¿½pus del node 'idNode'.
      */
     public void delNode(int idNode, String sNType) throws DUCException {
         int res = 0;
@@ -992,7 +992,7 @@ public class SemanticInterface {
         if (id.compareTo("nodeType") == 0) {
             lvb = new LabelValueBean("Nivell", "level");
             al.add(lvb);
-            lvb = new LabelValueBean("Àrea", "area");
+            lvb = new LabelValueBean("ï¿½rea", "area");
             al.add(lvb);
             lvb = new LabelValueBean("Contingut", "content");
             al.add(lvb);
