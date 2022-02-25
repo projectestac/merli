@@ -32,7 +32,7 @@
 
 <%
 %>   
-<jsp:include page="topAdministracio.jsp?selected=9" />
+<jsp:include page="topAdministracio.jsp?selected=8" />
 
 <script language="Javascript">
     function eliminar(idTipusFitxers) {

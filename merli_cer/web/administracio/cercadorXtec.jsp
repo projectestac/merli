@@ -68,7 +68,7 @@
          pes_keywords = rs.getFloat("pes_keywords");        */
 %>
 
-<jsp:include page="topAdministracio.jsp?selected=4" />
+<jsp:include page="topAdministracio.jsp?selected=3" />
 
 <script language="Javascript">
     function doSubmit() {

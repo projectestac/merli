@@ -111,9 +111,7 @@ public class ServletConfiguracio extends HttpServlet {
 		logger.debug("doPost -> out");		
         if (tipusCercador.equals("edu365")) {
 		    response.sendRedirect("/" + Configuracio.contextWebAplicacio + "/administracio/cercadorEdu365.jsp");
-		} else if(tipusCercador.equals("altres")){
-			response.sendRedirect("/" + Configuracio.contextWebAplicacio + "/administracio/cercadorAltres.jsp");
-		} else {
+            } else {
             response.sendRedirect("/" + Configuracio.contextWebAplicacio + "/administracio/cercadorXtec.jsp");            	
             }
 	}

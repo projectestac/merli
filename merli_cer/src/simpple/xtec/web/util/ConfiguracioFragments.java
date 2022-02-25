@@ -17,8 +17,8 @@ import org.apache.log4j.Logger;
 public class ConfiguracioFragments {
 
 	/**
-	* Posició 0 -> Cercador edu365
-	* Posició 1 -> Cercador xtec
+	* Posiciï¿½ 0 -> Cercador edu365
+	* Posiciï¿½ 1 -> Cercador xtec
 	**/
 	
 /*	static public int[] highlightFragmentSizeInBytes;
@@ -83,11 +83,6 @@ public class ConfiguracioFragments {
             	indexConfiguracio = 1;
             	sql = "select * from config_cerca where cercador_id=2";            	
                 }
-
-			if (tipusCercador.equals("altres")) {
-				indexConfiguracio = 2;
-				sql = "select * from config_cerca where cercador_id=3";
-			}
 
             stmt = myConnection.createStatement();
             
