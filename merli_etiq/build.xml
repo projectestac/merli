@@ -76,11 +76,110 @@
     <delete dir="${build.dir}" />
     <echo message="*** S'ha esborrat el directori build!"/>
   </target>
+	
+	<!-- =================================================================== -->
+	<!-- TO JAR                                                              -->
+	<!-- =================================================================== -->
+	<target name="to_jar" depends="init">
+		<move file="${lib.dir}/activation.aar" tofile="${lib.dir}/activation.jar" verbose="true"/>
+		<move file="${lib.dir}/apiSemanticNetv3.1.aar" tofile="${lib.dir}/apiSemanticNetv3.1.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-beanutils.aar" tofile="${lib.dir}/commons-beanutils.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-collections.aar" tofile="${lib.dir}/commons-collections.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-digester.aar" tofile="${lib.dir}/commons-digester.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-fileupload.aar" tofile="${lib.dir}/commons-fileupload.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-lang.aar" tofile="${lib.dir}/commons-lang.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-logging.aar" tofile="${lib.dir}/commons-logging.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-validator.aar" tofile="${lib.dir}/commons-validator.jar" verbose="true"/>
+		<move file="${lib.dir}/commons-validator-1.3.0.aar" tofile="${lib.dir}/commons-validator-1.3.0.jar" verbose="true"/>
+		<move file="${lib.dir}/correoWS.aar" tofile="${lib.dir}/correoWS.jar" verbose="true"/>
+		<move file="${lib.dir}/dbconn.aar" tofile="${lib.dir}/dbconn.jar" verbose="true"/>
+		<move file="${lib.dir}/dom.aar" tofile="${lib.dir}/dom.jar" verbose="true"/>
+		<move file="${lib.dir}/http_client.aar" tofile="${lib.dir}/http_client.jar" verbose="true"/>
+		<move file="${lib.dir}/jakarta-oro.aar" tofile="${lib.dir}/jakarta-oro.jar" verbose="true"/>
+		<move file="${lib.dir}/javax-ssl-1_2.aar" tofile="${lib.dir}/javax-ssl-1_2.jar" verbose="true"/>
+		<move file="${lib.dir}/jaxp-api.aar" tofile="${lib.dir}/jaxp-api.jar" verbose="true"/>
+		<move file="${lib.dir}/jdom.aar" tofile="${lib.dir}/jdom.jar" verbose="true"/>
+		<move file="${lib.dir}/jsp-api.aar" tofile="${lib.dir}/jsp-api.jar" verbose="true"/>
+		<move file="${lib.dir}/jssl-1_2.aar" tofile="${lib.dir}/jssl-1_2.jar" verbose="true"/>
+		<move file="${lib.dir}/jstl.aar" tofile="${lib.dir}/jstl.jar" verbose="true"/>
+		<move file="${lib.dir}/junit.aar" tofile="${lib.dir}/junit.jar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.13.aar" tofile="${lib.dir}/log4j-1.2.13.jar" verbose="true"/>
+		<move file="${lib.dir}/mail.aar" tofile="${lib.dir}/mail.jar" verbose="true"/>
+		<move file="${lib.dir}/merliUtils.aar" tofile="${lib.dir}/merliUtils.jar" verbose="true"/>
+		<move file="${lib.dir}/ojdbc14.aar" tofile="${lib.dir}/ojdbc14.jar" verbose="true"/>
+		<move file="${lib.dir}/saaj-api.aar" tofile="${lib.dir}/saaj-api.jar" verbose="true"/>
+		<move file="${lib.dir}/saaj-impl.aar" tofile="${lib.dir}/saaj-impl.jar" verbose="true"/>
+		<move file="${lib.dir}/sax.aar" tofile="${lib.dir}/sax.jar" verbose="true"/>
+		<move file="${lib.dir}/semanticInterface.aar" tofile="${lib.dir}/semanticInterface.jar" verbose="true"/>
+		<move file="${lib.dir}/servlet.aar" tofile="${lib.dir}/servlet.jar" verbose="true"/>
+		<move file="${lib.dir}/soap.aar" tofile="${lib.dir}/soap.jar" verbose="true"/>
+		<move file="${lib.dir}/standard.aar" tofile="${lib.dir}/standard.jar" verbose="true"/>
+		<move file="${lib.dir}/struts.aar" tofile="${lib.dir}/struts.jar" verbose="true"/>
+		<move file="${lib.dir}/struts-el.aar" tofile="${lib.dir}/struts-el.jar" verbose="true"/>
+		<move file="${lib.dir}/xalan.aar" tofile="${lib.dir}/xalan.jar" verbose="true"/>
+		<move file="${lib.dir}/xerces.aar" tofile="${lib.dir}/xerces.jar" verbose="true"/>
+		<move file="${lib.dir}/xercesImpl.aar" tofile="${lib.dir}/xercesImpl.jar" verbose="true"/>
+		<move file="${lib.dir}/xmlcomp.aar" tofile="${lib.dir}/xmlcomp.jar" verbose="true"/>
+		<move file="${lib.dir}/xmlparserv2.aar" tofile="${lib.dir}/xmlparserv2.jar" verbose="true"/>
+	    
+		<echo message="*** Renombrat de les depenèndies a .jar correctament!"/>
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- TO AAR                                                              -->
+	<!-- =================================================================== -->
+	<target name="to_aar" depends="init">
+		<move file="${lib.dir}/activation.jar" tofile="${lib.dir}/activation.aar" verbose="true"/>
+		<move file="${lib.dir}/apiSemanticNetv3.1.jar" tofile="${lib.dir}/apiSemanticNetv3.1.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-beanutils.jar" tofile="${lib.dir}/commons-beanutils.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-collections.jar" tofile="${lib.dir}/commons-collections.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-digester.jar" tofile="${lib.dir}/commons-digester.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-fileupload.jar" tofile="${lib.dir}/commons-fileupload.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-lang.jar" tofile="${lib.dir}/commons-lang.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-logging.jar" tofile="${lib.dir}/commons-logging.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-validator.jar" tofile="${lib.dir}/commons-validator.aar" verbose="true"/>
+		<move file="${lib.dir}/commons-validator-1.3.0.jar" tofile="${lib.dir}/commons-validator-1.3.0.aar" verbose="true"/>
+		<move file="${lib.dir}/correoWS.jar" tofile="${lib.dir}/correoWS.aar" verbose="true"/>
+		<move file="${lib.dir}/dbconn.jar" tofile="${lib.dir}/dbconn.aar" verbose="true"/>
+		<move file="${lib.dir}/dom.jar" tofile="${lib.dir}/dom.aar" verbose="true"/>
+		<move file="${lib.dir}/http_client.jar" tofile="${lib.dir}/http_client.aar" verbose="true"/>
+		<move file="${lib.dir}/jakarta-oro.jar" tofile="${lib.dir}/jakarta-oro.aar" verbose="true"/>
+		<move file="${lib.dir}/javax-ssl-1_2.jar" tofile="${lib.dir}/javax-ssl-1_2.aar" verbose="true"/>
+		<move file="${lib.dir}/jaxp-api.jar" tofile="${lib.dir}/jaxp-api.aar" verbose="true"/>
+		<move file="${lib.dir}/jdom.jar" tofile="${lib.dir}/jdom.aar" verbose="true"/>
+		<move file="${lib.dir}/jsp-api.jar" tofile="${lib.dir}/jsp-api.aar" verbose="true"/>
+		<move file="${lib.dir}/jssl-1_2.jar" tofile="${lib.dir}/jssl-1_2.aar" verbose="true"/>
+		<move file="${lib.dir}/jstl.jar" tofile="${lib.dir}/jstl.aar" verbose="true"/>
+		<move file="${lib.dir}/junit.jar" tofile="${lib.dir}/junit.aar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.13.jar" tofile="${lib.dir}/log4j-1.2.13.aar" verbose="true"/>
+		<move file="${lib.dir}/mail.jar" tofile="${lib.dir}/mail.aar" verbose="true"/>
+		<move file="${lib.dir}/merliUtils.jar" tofile="${lib.dir}/merliUtils.aar" verbose="true"/>
+		<move file="${lib.dir}/ojdbc14.jar" tofile="${lib.dir}/ojdbc14.aar" verbose="true"/>
+		<move file="${lib.dir}/saaj-api.jar" tofile="${lib.dir}/saaj-api.aar" verbose="true"/>
+		<move file="${lib.dir}/saaj-impl.jar" tofile="${lib.dir}/saaj-impl.aar" verbose="true"/>
+		<move file="${lib.dir}/sax.jar" tofile="${lib.dir}/sax.aar" verbose="true"/>
+		<move file="${lib.dir}/semanticInterface.jar" tofile="${lib.dir}/semanticInterface.aar" verbose="true"/>
+		<move file="${lib.dir}/servlet.jar" tofile="${lib.dir}/servlet.aar" verbose="true"/>
+		<move file="${lib.dir}/soap.jar" tofile="${lib.dir}/soap.aar" verbose="true"/>
+		<move file="${lib.dir}/standard.jar" tofile="${lib.dir}/standard.aar" verbose="true"/>
+		<move file="${lib.dir}/struts.jar" tofile="${lib.dir}/struts.aar" verbose="true"/>
+		<move file="${lib.dir}/struts-el.jar" tofile="${lib.dir}/struts-el.aar" verbose="true"/>
+		<move file="${lib.dir}/xalan.jar" tofile="${lib.dir}/xalan.aar" verbose="true"/>
+		<move file="${lib.dir}/xerces.jar" tofile="${lib.dir}/xerces.aar" verbose="true"/>
+		<move file="${lib.dir}/xercesImpl.jar" tofile="${lib.dir}/xercesImpl.aar" verbose="true"/>
+		<move file="${lib.dir}/xmlcomp.jar" tofile="${lib.dir}/xmlcomp.aar" verbose="true"/>
+		<move file="${lib.dir}/xmlparserv2.jar" tofile="${lib.dir}/xmlparserv2.aar" verbose="true"/>
+	        
+		<echo message="*** Renombrat de les depenèndies a .aar correctament!"/>
+	</target>		
 
   <!-- =================================================================== -->
   <!-- COMPILE                                                                -->
   <!-- =================================================================== -->
   <target name="compile" depends="clean,init">
+  	
+  	<ant target="to_jar"/>
+  	
     <mkdir dir="${build.dir}/WEB-INF/classes"/>
     <javac destdir="${build.dir}/WEB-INF/classes" 
            debug="${debug}" 
@@ -133,6 +232,8 @@
       	<pathelement location="${lib.dir}/xmlparserv2.jar"/>
       </classpath>
     </javac>
+  	
+  	<ant target="to_aar"/>
   </target>
 
 
@@ -150,6 +251,9 @@
 	
    <target name="dist" 
           depends="build">
+   	
+   	<ant target="to_jar"/>
+   	
     <war destfile="${build.dir}/e13_merli.war" 
          webxml="WEB-INF/web.xml">
     	
@@ -207,6 +311,8 @@
         </zipfileset>
 
     </war>
+   	
+   	<ant target="to_aar"/>
   </target>
   
   <target name="deploy" depends="dist">
@@ -239,9 +345,9 @@
     	<fileset dir="${build.dir}/WEB-INF/classes" includes="edu/xtec/merli/RecursMerli.class"/>
     </copy>
     <jar jarfile="${dist.dir}/merliBasics.jar" basedir="${build.dir}/merliBasics" />
-    <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_harvesting/web/WEB-INF/lib/merliBasics.jar"/>
-    <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_ws/web/WEB-INF/lib/merliBasics.jar"/>
-  	<copy file="${dist.dir}/merliBasics.jar" tofile="../merli_ws2/web/WEB-INF/lib/merliBasics.jar"/>
+    <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_harvesting/web/WEB-INF/lib/merliBasics.aar"/>
+    <copy file="${dist.dir}/merliBasics.jar" tofile="../merli_ws/web/WEB-INF/lib/merliBasics.aar"/>
+  	<copy file="${dist.dir}/merliBasics.jar" tofile="../merli_ws2/web/WEB-INF/lib/merliBasics.aar"/>
 
   </target>
 </project>

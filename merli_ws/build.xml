@@ -77,11 +77,72 @@
     <delete dir="${build.dir}" />
     <echo message="*** Deleted build directory"/>
   </target>
+	
+	<!-- =================================================================== -->
+	<!-- TO JAR                                                              -->
+	<!-- =================================================================== -->
+	<target name="to_jar" depends="init">
+		<move file="${lib.dir}/activation.aar" tofile="${lib.dir}/activation.jar" verbose="true"/>
+		<move file="${lib.dir}/apiSemanticMerli.aar" tofile="${lib.dir}/apiSemanticMerli.jar" verbose="true"/>
+		<move file="${lib.dir}/apiSemanticNetv3.1.aar" tofile="${lib.dir}/apiSemanticNetv3.1.jar" verbose="true"/>
+		<move file="${lib.dir}/dbconn.aar" tofile="${lib.dir}/dbconn.jar" verbose="true"/>
+		<move file="${lib.dir}/dom.aar" tofile="${lib.dir}/dom.jar" verbose="true"/>
+		<move file="${lib.dir}/jdom.aar" tofile="${lib.dir}/jdom.jar" verbose="true"/>
+		<move file="${lib.dir}/jsp-api.aar" tofile="${lib.dir}/jsp-api.jar" verbose="true"/>
+		<move file="${lib.dir}/junit.aar" tofile="${lib.dir}/junit.jar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.13.aar" tofile="${lib.dir}/log4j-1.2.13.jar" verbose="true"/>
+		<move file="${lib.dir}/mail.aar" tofile="${lib.dir}/mail.jar" verbose="true"/>
+		<move file="${lib.dir}/merliBasics.aar" tofile="${lib.dir}/merliBasics.jar" verbose="true"/>
+		<move file="${lib.dir}/merliUtils.aar" tofile="${lib.dir}/merliUtils.jar" verbose="true"/>
+		<move file="${lib.dir}/ojdbc14.aar" tofile="${lib.dir}/ojdbc14.jar" verbose="true"/>
+		<move file="${lib.dir}/saaj-api.aar" tofile="${lib.dir}/saaj-api.jar" verbose="true"/>
+		<move file="${lib.dir}/saaj-impl.aar" tofile="${lib.dir}/saaj-impl.jar" verbose="true"/>
+		<move file="${lib.dir}/sax.aar" tofile="${lib.dir}/sax.jar" verbose="true"/>
+		<move file="${lib.dir}/servlet.aar" tofile="${lib.dir}/servlet.jar" verbose="true"/>
+		<move file="${lib.dir}/struts.aar" tofile="${lib.dir}/struts.jar" verbose="true"/>
+		<move file="${lib.dir}/xalan.aar" tofile="${lib.dir}/xalan.jar" verbose="true"/>
+		<move file="${lib.dir}/xerces.aar" tofile="${lib.dir}/xerces.jar" verbose="true"/>
+		<move file="${lib.dir}/xercesImpl.aar" tofile="${lib.dir}/xercesImpl.jar" verbose="true"/>
+	    
+		<echo message="*** Renombrat de les depenèndies a .jar correctament!"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- TO AAR                                                              -->
+	<!-- =================================================================== -->
+	<target name="to_aar" depends="init">
+		<move file="${lib.dir}/activation.jar" tofile="${lib.dir}/activation.aar" verbose="true"/>
+		<move file="${lib.dir}/apiSemanticMerli.jar" tofile="${lib.dir}/apiSemanticMerli.aar" verbose="true"/>
+		<move file="${lib.dir}/apiSemanticNetv3.1.jar" tofile="${lib.dir}/apiSemanticNetv3.1.aar" verbose="true"/>
+		<move file="${lib.dir}/dbconn.jar" tofile="${lib.dir}/dbconn.aar" verbose="true"/>
+		<move file="${lib.dir}/dom.jar" tofile="${lib.dir}/dom.aar" verbose="true"/>
+		<move file="${lib.dir}/jdom.jar" tofile="${lib.dir}/jdom.aar" verbose="true"/>
+		<move file="${lib.dir}/jsp-api.jar" tofile="${lib.dir}/jsp-api.aar" verbose="true"/>
+		<move file="${lib.dir}/junit.jar" tofile="${lib.dir}/junit.aar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.13.jar" tofile="${lib.dir}/log4j-1.2.13.aar" verbose="true"/>
+		<move file="${lib.dir}/mail.jar" tofile="${lib.dir}/mail.aar" verbose="true"/>
+		<move file="${lib.dir}/merliBasics.jar" tofile="${lib.dir}/merliBasics.aar" verbose="true"/>
+		<move file="${lib.dir}/merliUtils.jar" tofile="${lib.dir}/merliUtils.aar" verbose="true"/>
+		<move file="${lib.dir}/ojdbc14.jar" tofile="${lib.dir}/ojdbc14.aar" verbose="true"/>
+		<move file="${lib.dir}/saaj-api.jar" tofile="${lib.dir}/saaj-api.aar" verbose="true"/>
+		<move file="${lib.dir}/saaj-impl.jar" tofile="${lib.dir}/saaj-impl.aar" verbose="true"/>
+		<move file="${lib.dir}/sax.jar" tofile="${lib.dir}/sax.aar" verbose="true"/>
+		<move file="${lib.dir}/servlet.jar" tofile="${lib.dir}/servlet.aar" verbose="true"/>
+		<move file="${lib.dir}/struts.jar" tofile="${lib.dir}/struts.aar" verbose="true"/>
+		<move file="${lib.dir}/xalan.jar" tofile="${lib.dir}/xalan.aar" verbose="true"/>
+		<move file="${lib.dir}/xerces.jar" tofile="${lib.dir}/xerces.aar" verbose="true"/>
+		<move file="${lib.dir}/xercesImpl.jar" tofile="${lib.dir}/xercesImpl.aar" verbose="true"/>
+	        
+		<echo message="*** Renombrat de les depenèndies a .aar correctament!"/>
+	</target>		
 
   <!-- =================================================================== -->
   <!-- COMPILE                                                                -->
   <!-- =================================================================== -->
   <target name="compile" depends="init">
+  	
+  	<ant target="to_jar"/>
+  	
     <mkdir dir="${build.dir}/WEB-INF/classes"/>
     <javac destdir="${build.dir}/WEB-INF/classes" 
     	   excludes="edu/xtec/merli/ws/test/**"
@@ -105,6 +166,9 @@
       	<pathelement location="${lib.dir}/apiSemanticMerli.jar"/>
       </classpath>
     </javac>
+  	
+  	<ant target="to_aar"/>
+  	
   </target>
 
 
@@ -116,6 +180,9 @@
 	
    <target name="dist" 
           depends="build">
+   	
+   	<ant target="to_jar"/>
+   	
     <war destfile="${build.dir}/merli_ws.war" 
          webxml="${web.dir}/WEB-INF/web.xml">
     	
@@ -160,6 +227,9 @@
             <patternset includes="semanticnet.properties"/>
         </zipfileset>
     </war>
+   	
+    <ant target="to_aar"/>
+   	
   </target>
   
   <target name="deploy"
