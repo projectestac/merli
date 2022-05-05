@@ -95,7 +95,7 @@
 		<move file="${lib.dir}/jsp-api.aar" tofile="${lib.dir}/jsp-api.jar" verbose="true"/>
 		<move file="${lib.dir}/jstl.aar" tofile="${lib.dir}/jstl.jar" verbose="true"/>
 		<move file="${lib.dir}/junit.aar" tofile="${lib.dir}/junit.jar" verbose="true"/>
-		<move file="${lib.dir}/log4j-1.2.13.aar" tofile="${lib.dir}/log4j-1.2.13.jar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.17-patched.aar" tofile="${lib.dir}/log4j-1.2.17-patched.jar" verbose="true"/>
 		<move file="${lib.dir}/ojdbc14.aar" tofile="${lib.dir}/ojdbc14.jar" verbose="true"/>
 		<move file="${lib.dir}/servlet.aar" tofile="${lib.dir}/servlet.jar" verbose="true"/>
 		<move file="${lib.dir}/standard.aar" tofile="${lib.dir}/standard.jar" verbose="true"/>
@@ -126,7 +126,7 @@
 		<move file="${lib.dir}/jsp-api.jar" tofile="${lib.dir}/jsp-api.aar" verbose="true"/>
 		<move file="${lib.dir}/jstl.jar" tofile="${lib.dir}/jstl.aar" verbose="true"/>
 		<move file="${lib.dir}/junit.jar" tofile="${lib.dir}/junit.aar" verbose="true"/>
-		<move file="${lib.dir}/log4j-1.2.13.jar" tofile="${lib.dir}/log4j-1.2.13.aar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.17-patched.jar" tofile="${lib.dir}/log4j-1.2.17-patched.aar" verbose="true"/>
 		<move file="${lib.dir}/ojdbc14.jar" tofile="${lib.dir}/ojdbc14.aar" verbose="true"/>
 		<move file="${lib.dir}/servlet.jar" tofile="${lib.dir}/servlet.aar" verbose="true"/>
 		<move file="${lib.dir}/standard.jar" tofile="${lib.dir}/standard.aar" verbose="true"/>

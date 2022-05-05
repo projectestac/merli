@@ -90,7 +90,7 @@
 		<move file="${lib.dir}/jdom.aar" tofile="${lib.dir}/jdom.jar" verbose="true"/>
 		<move file="${lib.dir}/jsp-api.aar" tofile="${lib.dir}/jsp-api.jar" verbose="true"/>
 		<move file="${lib.dir}/junit.aar" tofile="${lib.dir}/junit.jar" verbose="true"/>
-		<move file="${lib.dir}/log4j-1.2.13.aar" tofile="${lib.dir}/log4j-1.2.13.jar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.17-patched.aar" tofile="${lib.dir}/log4j-1.2.17-patched.jar" verbose="true"/>
 		<move file="${lib.dir}/mail.aar" tofile="${lib.dir}/mail.jar" verbose="true"/>
 		<move file="${lib.dir}/merliBasics.aar" tofile="${lib.dir}/merliBasics.jar" verbose="true"/>
 		<move file="${lib.dir}/merliUtils.aar" tofile="${lib.dir}/merliUtils.jar" verbose="true"/>
@@ -119,7 +119,7 @@
 		<move file="${lib.dir}/jdom.jar" tofile="${lib.dir}/jdom.aar" verbose="true"/>
 		<move file="${lib.dir}/jsp-api.jar" tofile="${lib.dir}/jsp-api.aar" verbose="true"/>
 		<move file="${lib.dir}/junit.jar" tofile="${lib.dir}/junit.aar" verbose="true"/>
-		<move file="${lib.dir}/log4j-1.2.13.jar" tofile="${lib.dir}/log4j-1.2.13.aar" verbose="true"/>
+		<move file="${lib.dir}/log4j-1.2.17-patched.jar" tofile="${lib.dir}/log4j-1.2.17-patched.aar" verbose="true"/>
 		<move file="${lib.dir}/mail.jar" tofile="${lib.dir}/mail.aar" verbose="true"/>
 		<move file="${lib.dir}/merliBasics.jar" tofile="${lib.dir}/merliBasics.aar" verbose="true"/>
 		<move file="${lib.dir}/merliUtils.jar" tofile="${lib.dir}/merliUtils.aar" verbose="true"/>
