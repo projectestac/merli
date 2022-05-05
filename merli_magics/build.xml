@@ -163,7 +163,7 @@
         <pathelement location="${lib.dir}/commons-validator.jar"/>
         <pathelement location="${lib.dir}/dbconn.jar"/>
         <pathelement location="${lib.dir}/jstl.jar"/>
-        <pathelement location="${lib.dir}/log4j-1.2.13.jar"/>
+        <pathelement location="${lib.dir}/log4j-1.2.17-patched.jar"/>
         <pathelement location="${lib.dir}/merliUtils.jar"/>
         <pathelement location="${lib.dir}/ojdbc14.jar"/>
         <pathelement location="${lib.dir}/standard.jar"/>
@@ -214,7 +214,7 @@
             <include name="commons-logging.jar"/>
             <include name="commons-validator.jar"/>
             <include name="dbconn.jar"/>
-        	<include name="log4j-1.2.13.jar"/>
+        	<include name="log4j-1.2.17-patched.jar"/>
 			<include name="merliUtils.jar"/>
         	<include name="ojdbc14.jar"/>
             <include name="standard.jar"/>

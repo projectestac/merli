@@ -155,7 +155,7 @@
       <classpath>
 		<pathelement location="${lib.dir}/servlet.jar"/>
         <pathelement location="${lib.dir}/dbconn.jar"/>
-        <pathelement location="${lib.dir}/log4j-1.2.13.jar"/>
+        <pathelement location="${lib.dir}/log4j-1.2.17-patched.jar"/>
       	<pathelement location="${lib.dir}/merliBasics.jar"/>
       	<pathelement location="${lib.dir}/merliUtils.jar"/>
         <pathelement location="${lib.dir}/struts.jar"/>
@@ -197,7 +197,7 @@
             <include name="dbconn.jar"/>
             <include name="dom.jar"/>
             <include name="jdom.jar"/>
-        	<include name="log4j-1.2.13.jar"/>
+        	<include name="log4j-1.2.17-patched.jar"/>
             <include name="mail.jar"/>
         	<include name="merliBasics.jar"/>
         	<include name="merliUtils.jar"/>
