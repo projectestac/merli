@@ -78,7 +78,7 @@
 
     comentarisSuspesos = fitxaRecurs.getComentarisSuspesos(usuari);
 
-    String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+    String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
 
     String cssFilePrint = urlLocal + "/css/fitxaRecurs-print.css";
 
@@ -1215,7 +1215,7 @@
                     int j = 0;
                     while (j < suggeriments.size()) {
                         RecursObject recursObject = (RecursObject) suggeriments.get(j);
-                        String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
+                        String urlRecurs = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
                 %>
                 <li>
                     <% if (recursObject.puntuacio <= 0) { %>

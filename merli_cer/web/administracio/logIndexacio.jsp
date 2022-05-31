@@ -16,7 +16,7 @@
 
   Logger logger = Logger.getLogger("indexacio.jsp");
 
-   String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;      
+   String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;      
    String contextWeb = Configuracio.contextWebAplicacio;
    String cssFile = urlLocal + "/" + contextWeb + "/css/admin_cerca.css";
 

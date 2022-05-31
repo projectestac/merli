@@ -27,7 +27,7 @@
         }
         Locale myLocale = new Locale(idioma);
 
-        String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+        String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
 
 %> 
 
@@ -245,7 +245,7 @@
                 if ((titol == null) || titol.equals("null")) {
                     titol = "Sense títol";
                 }
-                String fitxaUrl = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
+                String fitxaUrl = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
                 fitxaUrl += "cerca/fitxaRecurs.jsp?idRecurs=" + comentariLog.idRecurs + "#" + comentariLog.id;
 
         %>

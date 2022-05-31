@@ -24,7 +24,7 @@
 
       
    
-   String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;      
+   String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;      
    
    String tipusResultat = (String)request.getAttribute("accessos.tipusResultat");   
    if (tipusResultat == null) {

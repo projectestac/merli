@@ -27,7 +27,7 @@
         }
         Locale myLocale = new Locale(idioma);
 
-        String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+        String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
 %>
 
 

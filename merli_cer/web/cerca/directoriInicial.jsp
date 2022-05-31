@@ -65,7 +65,7 @@
         idioma = Configuracio.idioma;
     }
 
-    String urlLocal = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;
+    String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;
 
     String contextWeb = Configuracio.contextWebAplicacio;
     String cssFile = urlLocal + "/" + contextWeb + "/css/merli.css";
@@ -359,7 +359,7 @@
                                     while (i < recursosMesBenValorats.size()) {
                                         RecursObject recursObject = (RecursObject) recursosMesBenValorats.get(i);
 
-                                        String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
+                                        String urlRecurs = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
                                         int puntuacio = recursObject.puntuacio;
 
                                         if (i == 0) {
@@ -433,7 +433,7 @@
                                             String id = recursObject.id;
                                             int numVisites = recursObject.numVisites;
                                             String titol = recursObject.titol;
-                                            String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + id;
+                                            String urlRecurs = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + id;
                                             String textVisites = "visites";
                                             if (numVisites == 1) {
                                                 textVisites = "visita";
@@ -471,7 +471,7 @@
                                             while (i < recursosMesComentats.size()) {
                                                 RecursObject recursObject = (RecursObject) recursosMesComentats.get(i);
 
-                                                String urlRecurs = "http://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
+                                                String urlRecurs = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + recursObject.id;
                                                 if (i == 0) {%>
                                         <div id="primera_fila">
                                             <%     } else { %>
