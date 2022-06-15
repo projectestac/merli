@@ -48,7 +48,7 @@
 
         Connection myConnection = UtilsCercador.getConnectionFromPool();
 
-        String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;
+        String urlLocal = "https://" + Configuracio.servidorWeb;
         String contextWeb = Configuracio.contextWebAplicacio;
         String cssFile = urlLocal + "/" + contextWeb + "/css/merli.css";
         String cssFilePrint = urlLocal + "/" + contextWeb + "/css/merli-print.css";
@@ -183,7 +183,7 @@
 
                         String dia = UtilsCercador.getDia(dataEdicio);
                         String hora = UtilsCercador.getHora(dataEdicio);
-                        String urlRecurs = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + myComentari.idRecurs;
+                        String urlRecurs = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/fitxaRecurs.jsp?idRecurs=" + myComentari.idRecurs;
                         if ((i % 2) == 0) {
                 %>           
                 <div id="comentari_senar2">

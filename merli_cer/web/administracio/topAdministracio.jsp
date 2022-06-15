@@ -9,7 +9,7 @@
 
 
            
-   String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;      
+   String urlLocal = "https://" + Configuracio.servidorWeb;      
    String contextWeb = Configuracio.contextWebAplicacio;
   // String cssFile = urlLocal + "/" + contextWeb + "/css/panellNew.css";
 

@@ -9,7 +9,7 @@
     if (Configuracio.isVoid()) {
         Configuracio.carregaConfiguracio();
     }
-    String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+    String urlLocal = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio;
     String usuari = (String) session.getAttribute("nomUsuari");
 
     int comentarisSuspesos = 0;

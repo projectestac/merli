@@ -37,7 +37,7 @@
         conn = UtilsCercador.getConnectionFromPool();
         Inicial inicial = new Inicial(conn);
 
-        String baseScripts = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+        String baseScripts = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio;
 %>   
 
 
@@ -114,7 +114,7 @@
                 String hora = UtilsCercador.getHora(dataEdicio);
                 String idRecurs = myComentari.idRecurs;
 
-                String fitxaUrl = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
+                String fitxaUrl = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio + "/";
                 fitxaUrl += "cerca/fitxaRecurs.jsp?idRecurs=" + idRecurs + "#" + id;
         %>         
         <tr>

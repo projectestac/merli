@@ -5,7 +5,7 @@
     session.setAttribute("nomUsuari", null);
     session.setAttribute("user", null);
     session.setAttribute("usuariNomComplet", null);
-    String urlInicial = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/directoriInicial.jsp";
+    String urlInicial = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio + "/cerca/directoriInicial.jsp";
     logger.debug("Url inicial: " + urlInicial);
     response.setHeader("Osso-Return-Url", urlInicial );
     // Send Dynamic Directive for logout

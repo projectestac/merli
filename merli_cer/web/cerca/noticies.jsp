@@ -50,7 +50,7 @@
     
       Connection myConnection = UtilsCercador.getConnectionFromPool();  
   
-      String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;      
+      String urlLocal = "https://" + Configuracio.servidorWeb;      
       String contextWeb = Configuracio.contextWebAplicacio;
       String cssFile = urlLocal + "/" + contextWeb + "/css/merli.css";
       String cssFilePrint = urlLocal + "/" + contextWeb + "/css/merli-print.css";

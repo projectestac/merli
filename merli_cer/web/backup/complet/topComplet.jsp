@@ -31,7 +31,7 @@
    
    String urlCercador = Configuracio.urlPanellCercador;
    String urlIndexador = Configuracio.urlPanellIndexador;   
-   String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb;   
+   String urlLocal = "https://" + Configuracio.servidorWeb;   
    String contextWeb = Configuracio.contextWebAplicacio;   
 %>
   <ul>

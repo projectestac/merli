@@ -30,9 +30,6 @@ public class ResultGenerator {
             }
             contextWebAplicacio = Configuracio.contextWebAplicacio;
             urlServidor = "https://" + Configuracio.servidorWeb;
-            if (!Configuracio.portWeb.equals("")) {
-                urlServidor += ":" + Configuracio.portWeb;
-            }
             this.myConnection = myConnection;
         } catch (Exception e) {
             logger.error(e);
@@ -178,7 +175,7 @@ public class ResultGenerator {
 
     public String generateXML(Hits hits, String tipus, int nivell, String query) {
         String outputXML = "";
-        String baseUrl = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;
+        String baseUrl = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio;
 
         baseUrl += "/cerca/fitxaRecurs.jsp";
         int num_resultats = 0;
@@ -348,7 +345,7 @@ public class ResultGenerator {
             recursFisic = (String) parameters.get("recursFisic");
             unitatCerca = (String) parameters.get("unitatCerca");
 
-            baseUrl = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
+            baseUrl = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio + "/";
 
             urlRss = baseUrl + "CercaRSS?textCerca=" + query;
             urlLink = baseUrl + "ServletCerca?textCerca=" + query;
@@ -836,7 +833,7 @@ public class ResultGenerator {
 
             inxtec = (String) parameters.get("inxtec");
 
-            baseUrl = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio + "/";
+            baseUrl = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio + "/";
 
             urlRss = baseUrl + "CercaRSS?textCerca=" + query;
             if (nivellEducatiu != null) {

@@ -15,7 +15,7 @@
       }
       
   Logger logger = Logger.getLogger("fitxaRecurs.jsp");  
-  String urlLocal = "https://" + Configuracio.servidorWeb + ":" + Configuracio.portWeb + "/" + Configuracio.contextWebAplicacio;               
+  String urlLocal = "https://" + Configuracio.servidorWeb + "/" + Configuracio.contextWebAplicacio;               
   %>
 <html>
 <head>
