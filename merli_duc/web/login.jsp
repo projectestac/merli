@@ -29,7 +29,7 @@
                         <div id="login-content-text">
                             <html:errors property="login" />
                             <p class="login-text"><bean:message key="login.username" />: <html:text property="userName" size="15" maxlength="15" /> <br><html:errors property="userName" /></p>
-                            <p class="login-text"><bean:message key="login.password" />: <html:password property="password" size="15" maxlength="15" redisplay="false" style="margin-left:30px;"/><br><html:errors property="password" /></p>
+                            <p class="login-text"><bean:message key="login.password" />: <html:password property="password" size="15" maxlength="128" redisplay="false" style="margin-left:30px;"/><br><html:errors property="password" /></p>
                             <p><html:submit styleClass="buto" style="margin-left:120px;">
                                     <bean:message key="login.button.signon" />
                                 </html:submit></p>
@@ -77,7 +77,7 @@
        <tr>
                <td align="right"><bean:message key="login.password" /></td>
                <td align="left"><html:password property="password" size="15"
-                           maxlength="15" redisplay="false" /> <html:errors
+                           maxlength="128" redisplay="false" /> <html:errors
                            property="password" /></td>
            </tr>
            <tr>

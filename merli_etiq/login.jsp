@@ -38,7 +38,7 @@
 		<div id="login-content-text">
 			
 			<p class="login-text"><bean:message key="login.username" />: <html:text property="userName" size="15" maxlength="15" /> <br><html:errors property="userName" /></p>
-			<p class="login-text"><bean:message key="login.password" />: <html:password property="password" size="15" maxlength="15" redisplay="false"/><br><html:errors property="password" /></p>
+			<p class="login-text"><bean:message key="login.password" />: <html:password property="password" size="15" maxlength="128" redisplay="false"/><br><html:errors property="password" /></p>
 			<span class="login-text"><html:errors property="login" /></span>
 			<p>
 			<button type="button" style="float:right;" class="butoMerli small red" onClick="javascript:submit();return false;"><bean:message key='login.button.signon' /></button>		   
@@ -85,7 +85,7 @@
 				<tr>
 					<td align="right"><bean:message key="login.password" /></td>
 					<td align="left"><html:password property="password" size="15"
-						maxlength="15" redisplay="false" /> <html:errors
+						maxlength="128" redisplay="false" /> <html:errors
 						property="password" /></td>
 				</tr>
 				<tr>

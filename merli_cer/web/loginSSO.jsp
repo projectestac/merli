@@ -42,7 +42,7 @@
                             <input type="text" size="15" maxlength="15" name="username" style="float: right; "/> <br><errors property="username" /></p>
                             <p class="login-text">
                                 <%=XMLCollection.getProperty("administracio.usuaris.contrasenya", sLang)%>
-                            <input type="password" size="15" maxlength="15" name="password" style="float: right;"/><br><errors property="password" />
+                            <input type="password" size="15" maxlength="128" name="password" style="float: right;"/><br><errors property="password" />
                             </p>
 
                             <p><input type="submit" class="buto" style="margin-left:120px;" value="<%=XMLCollection.getProperty("cerca.cercaSimple.login", sLang)%>"/></p>
@@ -86,7 +86,7 @@
        <tr>
                <td align="right"><bean:message key="login.password" /></td>
                <td align="left"><password property="password" size="15"
-                           maxlength="15" redisplay="false" /> <errors
+                           maxlength="128" redisplay="false" /> <errors
                            property="password" /></td>
            </tr>
            <tr>
